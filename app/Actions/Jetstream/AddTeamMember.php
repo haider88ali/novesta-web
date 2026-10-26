@@ -17,7 +17,7 @@ use Laravel\Jetstream\Events\AddingTeamMember;
 use Laravel\Jetstream\Contracts\AddsTeamMembers;
 use Illuminate\Validation\Validator as ValidatorAlias;
 
-final class  implements AddsTeamMembers
+final class AddTeamMember implements AddsTeamMembers
 {
     /**
      * Add a new team member to the given team.

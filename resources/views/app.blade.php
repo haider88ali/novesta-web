@@ -19,17 +19,14 @@
         {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            "name": "Larasonic",
-            "url": "https://larasonic.com/",
-            "image": "https://larasonic.com/images/og.webp",
-            "description": "A modern Laravel SaaS starter kit for the VILT stack. Clone the repo, start building scalable and maintainable applications quickly.",
-            "applicationCategory": "DeveloperTool",
-            "operatingSystem": "All",
+            "name": "Nova",
+            "description": "Nova is a voice AI assistant for Mac and Windows: talk to search the web, write code, design UIs for Figma and control your computer — in English, Urdu and Hindi.",
+            "applicationCategory": "ProductivityApplication",
+            "operatingSystem": "macOS, Windows",
             "offers": {
                 "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD",
-                "category": "Free"
+                "price": "12",
+                "priceCurrency": "USD"
             }
         }
         @endverbatim
@@ -39,6 +36,11 @@
     @routes
     @vite(['resources/js/app.js', "resources/js/pages/{$page['component']}.vue"])
     @inertiaHead
+
+    {{-- Paddle.js for the checkout overlay (only once Paddle keys are configured) --}}
+    @if (config('cashier.client_side_token'))
+        @paddleJS
+    @endif
 </head>
 
 <body class="font-sans antialiased">

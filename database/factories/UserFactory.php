@@ -38,10 +38,6 @@ final class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'profile_photo_path' => null,
             'current_team_id' => null,
-            'stripe_id' => null,
-            'pm_type' => null,
-            'pm_last_four' => null,
-            'trial_ends_at' => null,
         ];
     }
 

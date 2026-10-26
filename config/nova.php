@@ -28,7 +28,7 @@ return [
             'paddle_price_id' => null,
             'description' => 'Try Nova with everyday questions.',
             'limits' => ['messages' => 50, 'searches' => 10, 'designs' => 2, 'voice_minutes' => 5, 'devices' => 1],
-            'features' => ['50 messages / month', '10 web searches', '2 UI designs', 'Mac control & files', '1 device'],
+            'features' => ['50 messages / month', '10 web searches', '2 UI designs', 'Computer control & files', '1 device'],
         ],
         'pro' => [
             'name' => 'Pro',
