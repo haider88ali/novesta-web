@@ -15,9 +15,9 @@ const defaultSeoMeta = {
   ogTitle: '%s | Nova — Voice AI Assistant',
   ogDescription:
         'Nova is a voice AI assistant for Mac and Windows. Talk to search the web, write code, design UIs for Figma and control your computer — in English, Urdu and Hindi.',
-  ogUrl: 'https://larasonic.com',
+  ogUrl: typeof window !== 'undefined' ? window.location.origin : undefined,
   ogType: 'website',
-  ogImage: 'https://larasonic.com/images/og.webp',
+  // TODO: add a 1200×630 Nova share image at public/images/og.png and set ogImage/twitterImage to it
   ogSiteName: 'Nova',
   ogLocale: 'en_US',
 
@@ -25,9 +25,7 @@ const defaultSeoMeta = {
   twitterTitle: '%s | Nova — Voice AI Assistant',
   twitterDescription:
         'Nova is a voice AI assistant for Mac and Windows. Talk to search the web, write code, design UIs for Figma and control your computer — in English, Urdu and Hindi.',
-  twitterCard: 'summary_large_image',
-  twitterImage: 'https://larasonic.com/images/og.webp',
-  twitterSite: '@pushpak1300',
+  twitterCard: 'summary',
 }
 
 /**

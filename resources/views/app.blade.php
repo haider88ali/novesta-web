@@ -32,6 +32,10 @@
         @endverbatim
     </script>
 
+    <!-- Urdu text on the landing page -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600&display=swap">
+
     <!-- Scripts -->
     @routes
     @vite(['resources/js/app.js', "resources/js/pages/{$page['component']}.vue"])
