@@ -49,6 +49,19 @@ final class GatewayController extends Controller
         ]);
     }
 
+    /** Sign out: the app revokes its own device token. */
+    public function signOut(Request $request): JsonResponse
+    {
+        /** @var User $user */
+        $user = $request->user();
+        $token = $user->currentAccessToken();
+        if ($token instanceof PersonalAccessToken) {
+            $token->delete();
+        }
+
+        return response()->json(['ok' => true]);
+    }
+
     public function responses(Request $request): JsonResponse|StreamedResponse
     {
         /** @var User $user */

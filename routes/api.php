@@ -18,6 +18,7 @@ Route::middleware('throttle:device-auth')->prefix('device')->group(function (): 
 // AI gateway for the desktop app — OpenAI-compatible paths, device tokens only
 Route::middleware(['auth:sanctum', 'abilities:nova:device', 'throttle:gateway'])->prefix('v1')->group(function (): void {
     Route::get('/me', [GatewayController::class, 'me'])->name('api.me');
+    Route::delete('/device', [GatewayController::class, 'signOut'])->name('api.device.signout');
     Route::post('/responses', [GatewayController::class, 'responses'])->name('api.responses');
     Route::post('/audio/speech', [GatewayController::class, 'speech'])->name('api.speech');
     Route::post('/audio/transcriptions', [GatewayController::class, 'transcribe'])->name('api.transcribe');

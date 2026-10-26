@@ -80,3 +80,14 @@ test('a user can remove only their own devices', function (): void {
 test('approving a device requires login', function (): void {
     $this->get(route('device.show'))->assertRedirect(route('login'));
 });
+
+test('the app can sign itself out, revoking only its own token', function (): void {
+    $token = $this->user->createToken('Laptop (Mac)', ['nova:device'])->plainTextToken;
+    $this->user->createToken('Desktop (Windows)', ['nova:device']);
+
+    $this->withToken($token)->deleteJson(route('api.device.signout'))->assertOk();
+
+    expect($this->user->tokens()->pluck('name')->all())->toBe(['Desktop (Windows)']);
+    app('auth')->forgetGuards();
+    $this->withToken($token)->getJson(route('api.me'))->assertUnauthorized();
+});
