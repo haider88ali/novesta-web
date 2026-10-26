@@ -20,4 +20,5 @@ Route::middleware(['auth:sanctum', 'abilities:nova:device', 'throttle:gateway'])
     Route::get('/me', [GatewayController::class, 'me'])->name('api.me');
     Route::post('/responses', [GatewayController::class, 'responses'])->name('api.responses');
     Route::post('/audio/speech', [GatewayController::class, 'speech'])->name('api.speech');
+    Route::post('/audio/transcriptions', [GatewayController::class, 'transcribe'])->name('api.transcribe');
 });

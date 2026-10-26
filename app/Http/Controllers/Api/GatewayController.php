@@ -151,6 +151,54 @@ final class GatewayController extends Controller
         return response()->stream(fn () => $this->pipe($stream), 200, ['Content-Type' => 'audio/mpeg', 'Cache-Control' => 'no-cache']);
     }
 
+    /**
+     * Speech to text for the desktop app's microphone. Each recording becomes a message,
+     * so it is allowed while the user still has messages left this month.
+     */
+    public function transcribe(Request $request): JsonResponse
+    {
+        /** @var User $user */
+        $user = $request->user();
+        if (! $key = Config::get('nova.openai.key')) {
+            return $this->error('Nova AI is not configured on the server yet.', 503, 'not_configured');
+        }
+
+        $data = $request->validate([
+            'file' => ['required', 'file', 'max:10240', 'mimetypes:audio/webm,video/webm,audio/ogg,audio/mp4,audio/mpeg,audio/wav,audio/x-wav'],
+            'model' => ['required', Rule::in(Config::array('nova.openai.stt_models'))],
+            'language' => ['nullable', 'in:en,ur,hi'],
+            'prompt' => ['nullable', 'string', 'max:300'],
+            'duration' => ['nullable', 'numeric', 'min:0', 'max:600'],   // seconds, reported by the app for cost logging
+        ]);
+        if ($message = Quota::deny($user, 'message', $request->header('X-Nova-Turn'))) {
+            return $this->error($message, 429, 'nova_quota');
+        }
+
+        $file = $request->file('file');
+        $upstream = Http::withToken($key)->timeout(60)
+            ->attach('file', fopen($file->getRealPath(), 'r'), 'speech.'.($file->guessExtension() ?: 'webm'))
+            ->post(Config::string('nova.openai.base_url').'/audio/transcriptions', array_filter([
+                'model' => $data['model'],
+                'language' => $data['language'] ?? null,
+                'prompt' => $data['prompt'] ?? null,
+            ]));
+
+        if ($upstream->failed()) {
+            return response()->json($upstream->json() ?? ['error' => ['message' => 'The speech service failed.']], $upstream->status());
+        }
+
+        $minutes = round(((float) ($data['duration'] ?? 0)) / 60, 3);
+        UsageEvent::query()->create([
+            'user_id' => $user->id,
+            'token_id' => ($token = $user->currentAccessToken()) instanceof PersonalAccessToken ? $token->id : null,
+            'kind' => 'transcribe',
+            'model' => $data['model'],
+            'cost_usd' => $minutes * Config::array('nova.pricing')['stt_minute'],
+        ]);
+
+        return response()->json(['text' => (string) $upstream->json('text', '')]);
+    }
+
     /** Copy an upstream body to the client as it arrives, optionally handing each SSE block to $onBlock. */
     private function pipe(StreamInterface $stream, ?callable $onBlock = null): void
     {

@@ -62,6 +62,7 @@ return [
         'base_url' => env('OPENAI_BASE_URL', 'https://api.openai.com/v1'),
         'chat_models' => ['gpt-4o-mini', 'gpt-4.1-mini', 'gpt-4.1'],
         'tts_models' => ['gpt-4o-mini-tts'],
+        'stt_models' => ['gpt-4o-mini-transcribe'],
         'tts_voices' => ['nova', 'alloy', 'shimmer', 'echo', 'onyx', 'fable', 'coral', 'sage'],
         'max_output_tokens' => 16000,
         'allowed_tools' => ['web_search', 'function'],
@@ -74,6 +75,7 @@ return [
         'gpt-4.1' => ['input' => 2.00, 'output' => 8.00],
         'web_search_call' => 0.01,
         'tts_minute' => 0.015,
+        'stt_minute' => 0.003,
     ],
 
 ];

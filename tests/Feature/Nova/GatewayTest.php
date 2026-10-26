@@ -149,3 +149,23 @@ test('the me endpoint reports plan, limits and usage', function (): void {
         ->assertJsonPath('usage.devices', 1)
         ->assertJsonMissingPath('usage.cost_usd');
 });
+
+test('speech to text is forwarded and logged, and needs messages left', function (): void {
+    Http::fake(['api.openai.com/v1/audio/transcriptions' => Http::response(['text' => 'open slack'])]);
+    $audio = \Illuminate\Http\UploadedFile::fake()->create('speech.webm', 40, 'audio/webm');
+
+    $this->withToken($this->token)->post(route('api.transcribe'), ['file' => $audio, 'model' => 'gpt-4o-mini-transcribe', 'language' => 'en', 'duration' => 30], ['Accept' => 'application/json'])
+        ->assertOk()->assertJson(['text' => 'open slack']);
+
+    Http::assertSent(fn (Request $r) => $r->url() === 'https://api.openai.com/v1/audio/transcriptions' && $r->isMultipart());
+    $event = UsageEvent::query()->sole();
+    expect($event->kind)->toBe('transcribe')->and($event->cost_usd)->toBe(0.0015);
+
+    // Other models are rejected; an exhausted message quota blocks transcription too
+    $this->withToken($this->token)->post(route('api.transcribe'), ['file' => $audio, 'model' => 'whisper-1'], ['Accept' => 'application/json'])
+        ->assertUnprocessable();
+    Config::set('nova.trial_days', 0);
+    Config::set('nova.plans.free.limits.messages', 0);
+    $this->withToken($this->token)->post(route('api.transcribe'), ['file' => $audio, 'model' => 'gpt-4o-mini-transcribe'], ['Accept' => 'application/json'])
+        ->assertStatus(429);
+});
