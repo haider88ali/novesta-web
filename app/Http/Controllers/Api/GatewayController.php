@@ -72,14 +72,25 @@ final class GatewayController extends Controller
 
         $kind = $request->header('X-Nova-Kind') === 'design' ? 'design' : 'message';
         $turn = mb_substr((string) preg_replace('/[^A-Za-z0-9-]/', '', (string) $request->header('X-Nova-Turn')), 0, 64) ?: null;
-        $body = Arr::only((array) $request->json()->all(), self::RESPONSES_FIELDS);
 
-        if (! in_array($body['model'] ?? null, Config::array('nova.openai.chat_models'), true)) {
+        // Decode with objects kept as objects: an empty JSON schema {} must not turn into [] on the way to OpenAI
+        $raw = json_decode($request->getContent());
+        if (! $raw instanceof \stdClass) {
+            return $this->error('The request body must be a JSON object.', 400, 'invalid_request');
+        }
+        $body = new \stdClass;
+        foreach (self::RESPONSES_FIELDS as $field) {
+            if (property_exists($raw, $field)) {
+                $body->{$field} = $raw->{$field};
+            }
+        }
+
+        if (! in_array($body->model ?? null, Config::array('nova.openai.chat_models'), true)) {
             return $this->error('This model is not available in Nova.', 400, 'invalid_model');
         }
         // Only continue conversations this user started
-        if (isset($body['previous_response_id']) && ! UsageEvent::query()
-            ->where('user_id', $user->id)->where('response_id', (string) $body['previous_response_id'])->exists()) {
+        if (isset($body->previous_response_id) && ! UsageEvent::query()
+            ->where('user_id', $user->id)->where('response_id', (string) $body->previous_response_id)->exists()) {
             return $this->error('Unknown conversation.', 400, 'invalid_previous_response');
         }
         if ($message = Quota::deny($user, $kind, $turn)) {
@@ -88,25 +99,30 @@ final class GatewayController extends Controller
 
         // Allowed tool types only; web search is dropped once the plan's searches are used up
         $searchesLeft = Quota::searchesLeft($user);
-        $tools = array_values(array_filter((array) ($body['tools'] ?? []), fn ($tool): bool => is_array($tool)
-            && in_array($tool['type'] ?? null, Config::array('nova.openai.allowed_tools'), true)
-            && (($tool['type'] ?? null) !== 'web_search' || $searchesLeft > 0)));
-        $tools ? $body['tools'] = $tools : Arr::forget($body, ['tools', 'tool_choice', 'parallel_tool_calls']);
+        $tools = array_values(array_filter((array) ($body->tools ?? []), fn ($tool): bool => $tool instanceof \stdClass
+            && in_array($tool->type ?? null, Config::array('nova.openai.allowed_tools'), true)
+            && (($tool->type ?? null) !== 'web_search' || $searchesLeft > 0)));
+        if ($tools) {
+            $body->tools = $tools;
+        } else {
+            unset($body->tools, $body->tool_choice, $body->parallel_tool_calls);
+        }
 
         $cap = Config::integer('nova.openai.max_output_tokens');
-        $body['max_output_tokens'] = min((int) ($body['max_output_tokens'] ?? $cap), $cap);
-        $body['store'] = true;   // needed for previous_response_id
+        $body->max_output_tokens = min((int) ($body->max_output_tokens ?? $cap), $cap);
+        $body->store = true;   // needed for previous_response_id
 
         $upstream = Http::withToken($key)->withOptions(['stream' => true])->timeout(300)
-            ->post(Config::string('nova.openai.base_url').'/responses', $body);
+            ->withBody((string) json_encode($body), 'application/json')
+            ->post(Config::string('nova.openai.base_url').'/responses');
 
         if ($upstream->failed()) {
             return response()->json($upstream->json() ?? ['error' => ['message' => 'The AI service failed.']], $upstream->status());
         }
 
-        $record = fn (array $response) => $this->record($user, $request, $kind, $turn, (string) $body['model'], $response);
+        $record = fn (array $response) => $this->record($user, $request, $kind, $turn, (string) $body->model, $response);
 
-        if (empty($body['stream'])) {
+        if (empty($body->stream)) {
             $json = (array) $upstream->json();
             $record($json);
 

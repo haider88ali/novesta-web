@@ -169,3 +169,14 @@ test('speech to text is forwarded and logged, and needs messages left', function
     $this->withToken($this->token)->post(route('api.transcribe'), ['file' => $audio, 'model' => 'gpt-4o-mini-transcribe'], ['Accept' => 'application/json'])
         ->assertStatus(429);
 });
+
+test('empty JSON objects in tool schemas reach OpenAI as objects, not arrays', function (): void {
+    fakeOpenAI();
+
+    // Raw body on purpose: the regular test helpers would decode and re-encode it
+    $this->call('POST', route('api.responses'), [], [], [], ['CONTENT_TYPE' => 'application/json', 'HTTP_ACCEPT' => 'application/json', 'HTTP_AUTHORIZATION' => 'Bearer '.$this->token],
+        '{"model":"gpt-4o-mini","input":"hi","tools":[{"type":"function","name":"list_reminders","parameters":{"type":"object","properties":{},"required":[],"additionalProperties":false}}]}'
+    )->assertOk();
+
+    Http::assertSent(fn (Request $r) => str_contains($r->body(), '"properties":{}') && ! str_contains($r->body(), '"properties":[]'));
+});
