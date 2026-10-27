@@ -28,37 +28,46 @@ const startHref = computed(() => (loggedIn.value ? '/dashboard' : '/register'))
 const trialPlan = computed(() => props.plans.find(p => p.key === 'pro'))
 
 const examples = [
-  { say: 'Hey Nova, what\'s new in Laravel this month?', does: 'Searches the web and answers with sources', icon: 'lucide:globe' },
-  { say: 'Write a Python script that renames my photos by date', does: 'Writes the code, highlights it, saves it to Downloads', icon: 'lucide:code-xml' },
-  { say: 'Design a login screen for my clothing store', does: 'Creates a UI design and sends it to Figma', icon: 'lucide:palette' },
-  { say: 'Open Slack and set the volume to 30', does: 'Controls your apps and system settings', icon: 'lucide:monitor-cog' },
+  { say: 'What\'s new in Laravel this month?', does: 'Searches the web and answers with sources', icon: 'lucide:globe' },
+  { say: 'Work on my shop project and run the tests', does: 'Opens the project, runs them after you approve', icon: 'lucide:square-terminal' },
+  { say: 'Look at my screen — what does this error mean?', does: 'Reads your screen and explains it', icon: 'lucide:scan-eye' },
+  { say: 'Design a login screen, then make it in React', does: 'Designs it, sends it to Figma, writes the code', icon: 'lucide:palette' },
+  { say: 'Good morning', does: 'Weather, your reminders and the top news in one briefing', icon: 'lucide:sunrise' },
   { say: 'نووا، کل صبح 9 بجے علی کو کال کرنے کی یاد دہانی', does: 'Understands and replies in Urdu, sets the reminder', icon: 'lucide:languages', rtl: true },
-  { say: 'Open my resume from Downloads and summarise it', does: 'Finds the file, shows it, explains it', icon: 'lucide:file-text' },
+  { say: 'Aaj Lahore mein Asr kitne baje hai?', does: 'Today\'s prayer times for your city, in Roman Urdu', icon: 'lucide:moon-star' },
+  { say: 'WhatsApp Ahmed that I\'ll be 10 minutes late', does: 'Finds the contact and gets the message ready to send', icon: 'lucide:message-circle' },
+  { say: 'Open Slack and set the volume to 30', does: 'Controls your apps and system settings', icon: 'lucide:monitor-cog' },
 ]
 
 const features = [
-  { icon: 'lucide:audio-lines', title: 'Talk naturally', text: 'Nova waits until you\'ve finished speaking — pauses and "umm"s don\'t cut you off. Say "Hey Nova" hands-free, or tap to talk.' },
+  { icon: 'lucide:audio-lines', title: 'Talk from any app', text: 'Press Option+Space (Alt+Space on Windows) wherever you are and just talk. Nova waits until you\'ve finished — pauses and "umm"s don\'t cut you off.' },
   { icon: 'lucide:search', title: 'Live web answers', text: 'Ask about news, prices, docs or anything current. Nova searches the web and answers with links to its sources.' },
   { icon: 'lucide:code-xml', title: 'Code on command', text: 'Ask for scripts, components or fixes. Code is highlighted, one click to copy, and Nova can save it straight to a file.' },
-  { icon: 'lucide:monitor-cog', title: 'Controls your computer', text: 'Open and quit apps, folders and websites, change volume, play music, take screenshots, check your battery.' },
-  { icon: 'lucide:folder-open', title: 'Your files, in view', text: 'Say "open the invoice from Downloads" — Nova finds it and shows code, PDFs, images, video or audio right in its window.' },
-  { icon: 'lucide:figma', title: 'UI designs → Figma', text: 'Describe a screen and Nova designs it, previews it, and sends it to Figma as editable layers with auto layout.' },
-  { icon: 'lucide:brain', title: 'Remembers you', text: 'Tell Nova your preferences once. It remembers them, keeps your chat history, and handles reminders and timers.' },
-  { icon: 'lucide:languages', title: 'English, اردو, हिन्दी', text: 'Speak and get answers in Urdu or Hindi — written in proper script and read aloud in a natural voice.' },
+  { icon: 'lucide:square-terminal', title: 'Developer project mode', text: 'Say "work on my shop project". Nova reads and searches your code, then runs tests or edits files — always after you approve the exact command or change.' },
+  { icon: 'lucide:scan-eye', title: 'Sees your screen', text: 'Say "look at my screen" and Nova explains the error, chart or page in front of you — only when you ask.' },
+  { icon: 'lucide:notebook-pen', title: 'Meeting copilot', text: 'Nova listens to your meeting and writes live notes, then gives you a summary, decisions, action items and a ready follow-up email.' },
+  { icon: 'lucide:figma', title: 'Design → Figma → code', text: 'Describe a screen and Nova designs it and sends it to Figma as editable layers. Change it by voice, then turn it into Vue, React or HTML with Tailwind.' },
+  { icon: 'lucide:monitor-cog', title: 'Controls your computer', text: 'Open apps, files, folders and websites, change volume, play music, take screenshots, check your battery and prepare WhatsApp messages.' },
+  { icon: 'lucide:sunrise', title: 'Routines, reminders & memory', text: 'Say "good morning" for your daily briefing, schedule routines and set reminders by voice. Nova remembers your preferences and history — on your own computer.' },
+  { icon: 'lucide:languages', title: 'Urdu-first', text: 'English, اردو, Roman Urdu and हिन्दी — spoken and written. Ask for namaz times for your city anytime.' },
+  { icon: 'lucide:clipboard-type', title: 'Quick actions on copied text', text: 'Copy any text and press Cmd/Ctrl+Shift+Space to summarise, translate, fix the grammar or write a reply.' },
+  { icon: 'lucide:smile', title: 'Your voice, your style', text: 'Pick from natural AI voices and personalities — calm JARVIS, friendly, professional, or Bhai mode in Roman Urdu.' },
 ]
 
 const steps = [
   { icon: 'lucide:download', title: 'Download Nova', text: 'Install the app on your Mac or Windows PC.' },
   { icon: 'lucide:log-in', title: 'Sign in once', text: 'Nova opens this website to confirm it\'s you — no passwords typed into the app.' },
-  { icon: 'lucide:mic', title: 'Say "Hey Nova"', text: 'Ask, search, code, design or control your computer — just by talking.' },
+  { icon: 'lucide:mic', title: 'Press Option+Space and talk', text: 'Ask, search, code, design or control your computer — just by talking. (Alt+Space on Windows.)' },
 ]
 
 const faqs = [
   { q: 'What do I need to run Nova?', a: 'A Mac or Windows computer with a microphone and an internet connection. No extra hardware or setup is needed.' },
   { q: 'Is there a free trial?', a: `Yes. Every new account gets ${props.trialDays} days of ${trialPlan.value?.name ?? 'Pro'} for free, with no card required. After that you stay on the Free plan unless you choose to upgrade.` },
-  { q: 'Can Nova do anything on my computer without asking?', a: 'No. Nova can only use a fixed set of actions — opening apps, folders, files and websites, volume, music, screenshots and battery status. It cannot run arbitrary commands, and it never opens hidden files or secrets like passwords and keys.' },
+  { q: 'Can Nova do anything on my computer without asking?', a: 'Simple actions — opening apps, folders, files and websites, volume, music, screenshots and battery status — happen when you ask for them. Anything that changes your work needs your approval: in project mode Nova shows you the exact command or file change first and only runs it when you click Approve. It never reads secrets like .env files, passwords or keys, never looks at your screen unless you ask, and never sends a WhatsApp message itself — you press send.' },
+  { q: 'Does everything work on Windows?', a: 'Talking, web search, code, project mode, meeting notes, designs, routines, reminders, prayer times and quick actions work on both Mac and Windows. Controlling apps and system settings, opening files, screenshots, screen understanding and WhatsApp are Mac-only for now, with Windows support coming.' },
+  { q: 'How do I talk to Nova?', a: 'Press Option+Space on a Mac or Alt+Space on Windows from any app, or click the microphone in Nova. Speak naturally; Nova answers when you stop. You can also type.' },
   { q: 'Where is my data stored?', a: 'Your chat history, memories and reminders are stored on your own computer. To answer you, each request is sent through Nova\'s servers to our AI provider (OpenAI), which may keep it for a limited time under its own data policy. Nova\'s servers record usage counts for your plan limits, not the content of your conversations.' },
-  { q: 'Which languages does Nova speak?', a: 'English, Urdu and Hindi — for listening, written answers and the spoken voice. Code, file names and technical terms stay in English.' },
+  { q: 'Which languages does Nova speak?', a: 'English, Urdu, Roman Urdu and Hindi — for listening, written answers and the spoken voice. Urdu is written in proper Nastaliq script; Roman Urdu answers in Urdu written with English letters. Code, file names and technical terms stay in English.' },
   { q: 'How does the Figma integration work?', a: 'Ask Nova for a design and it appears in Nova instantly. With the free Nova Bridge plugin open in Figma\'s desktop app, the same design is created on your Figma page as editable frames, text and auto layout.' },
   { q: 'How do I pay, and can I cancel?', a: 'Payments are handled securely by Paddle, which supports cards and local taxes worldwide. You can switch plans or cancel anytime from your account; you keep your plan until the end of the paid month.' },
   { q: 'How many computers can I use?', a: 'It depends on your plan — see the device limit in each plan above. You can sign out an old computer from your account at any time.' },
@@ -80,8 +89,8 @@ const faqs = [
             <span class="bg-gradient-to-r from-cyan-400 to-violet-500 bg-clip-text text-transparent">Mac & Windows</span>
           </h1>
           <p class="mx-auto mt-6 max-w-xl text-lg text-muted-foreground lg:mx-0">
-            Just say <strong class="text-foreground">“Hey Nova”</strong>. Search the web, write code, design screens for Figma,
-            open your files and control your computer — hands-free, in your language.
+            Press <strong class="text-foreground">Option+Space</strong> from any app and just talk. Search the web, work on your code,
+            take meeting notes, design screens for Figma and control your computer — in your language.
           </p>
           <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
             <Button size="lg" :as="Link" :href="startHref" class="text-base">
@@ -104,7 +113,7 @@ const faqs = [
             <span class="core" />
           </div>
           <div class="bubble b1">
-            “Hey Nova, design a pricing page”
+            “Design a pricing page in React”
           </div>
           <div class="bubble b2">
             ✓ Opened Visual Studio Code
@@ -148,7 +157,7 @@ const faqs = [
             Everything you need, one voice away
           </h2>
           <p class="mt-4 text-muted-foreground">
-            Nova combines a fast AI model, live web search and real control of your computer.
+            Nova combines a fast AI model, live web search and real, approved control of your computer and your code.
           </p>
         </div>
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -249,7 +258,7 @@ const faqs = [
             Get Nova
           </h2>
           <p class="mt-4 text-muted-foreground">
-            Download the app, sign in with your account, and say “Hey Nova”.
+            Download the app, sign in with your account, and press Option+Space (Alt+Space on Windows) to talk.
           </p>
           <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Button size="lg" :as="downloads.mac ? 'a' : 'button'" :href="downloads.mac || undefined" :disabled="!downloads.mac" class="text-base">
