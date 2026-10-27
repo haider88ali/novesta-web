@@ -22,6 +22,9 @@ final readonly class DeleteUser implements DeletesUsers
      */
     public function delete(User $user): void
     {
+        // Stop billing first: a deleted account must never be charged again
+        $user->subscriptions->filter->valid()->each->cancelNow();
+
         DB::transaction(function () use ($user): void {
             $this->deleteTeams($user);
             $user->deleteProfilePhoto();

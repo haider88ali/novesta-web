@@ -5,12 +5,18 @@ declare(strict_types=1);
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\BillingController;
+use App\Http\Controllers\LegalController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\User\OauthController;
 use App\Http\Controllers\User\LoginLinkController;
 
 Route::get('/', [WelcomeController::class, 'home'])->name('home');
+
+// Replace Jetstream's plain legal pages with Nova's (filled from config/nova.php)
+Route::get('/terms-of-service', [LegalController::class, 'terms'])->name('terms.show');
+Route::get('/privacy-policy', [LegalController::class, 'privacy'])->name('policy.show');
+Route::get('/refund-policy', [LegalController::class, 'refunds'])->name('refunds.show');
 
 Route::prefix('auth')->group(
     function () {

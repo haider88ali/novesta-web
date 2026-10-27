@@ -18,6 +18,14 @@ return [
     // Comma-separated emails that may open the admin panel at /admin
     'admin_emails' => env('NOVA_ADMIN_EMAILS', ''),
 
+    // Who runs Nova, for the Terms, Privacy and Refund pages and the site footer
+    'legal' => [
+        'operator' => env('NOVA_LEGAL_NAME', 'Haider Ali'),
+        'country' => env('NOVA_LEGAL_COUNTRY', 'Pakistan'),
+        'support_email' => env('NOVA_SUPPORT_EMAIL', 'support@example.com'),
+        'updated' => '27 October 2026',
+    ],
+
     'trial_days' => (int) env('NOVA_TRIAL_DAYS', 7),
     'trial_plan' => 'pro',
 

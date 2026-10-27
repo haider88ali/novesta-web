@@ -1,8 +1,8 @@
 <script setup>
 import { Icon } from '@iconify/vue'
-import { Link } from '@inertiajs/vue3'
+import { Link, usePage } from '@inertiajs/vue3'
 import { useColorMode } from '@vueuse/core'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import Button from '@/components/ui/button/Button.vue'
 
 defineProps({
@@ -29,7 +29,7 @@ const navLinks = [
   { label: 'FAQ', href: '/#faq' },
 ]
 
-const supportEmail = 'support@example.com'
+const supportEmail = computed(() => usePage().props.supportEmail)
 const year = new Date().getFullYear()
 
 const isMenuOpen = ref(false)
@@ -127,6 +127,7 @@ function toggleMenu() {
         <nav class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           <a href="/terms-of-service" class="hover:text-foreground">Terms</a>
           <a href="/privacy-policy" class="hover:text-foreground">Privacy</a>
+          <a href="/refund-policy" class="hover:text-foreground">Refunds</a>
           <a :href="`mailto:${supportEmail}`" class="hover:text-foreground">Support</a>
         </nav>
       </div>

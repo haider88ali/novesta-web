@@ -41,6 +41,7 @@ final class HandleInertiaRequests extends Middleware
         /** @var array<string, mixed> */
         return array_merge(parent::share($request), [
             'name' => Config::get('app.name', 'Larasonic'),
+            'supportEmail' => Config::get('nova.legal.support_email'),
             'flash' => [
                 'message' => fn () => $request->session()->get('message'),
                 'success' => fn () => $request->session()->get('success'),

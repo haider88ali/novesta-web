@@ -1,6 +1,6 @@
 <script setup>
 import { Icon } from '@iconify/vue'
-import { Link } from '@inertiajs/vue3'
+import { Link, usePage } from '@inertiajs/vue3'
 import { useColorMode } from '@vueuse/core'
 import { computed, inject } from 'vue'
 import {
@@ -46,7 +46,7 @@ const navigationConfig = [
       {
         name: 'Support',
         icon: 'lucide:life-buoy',
-        href: 'mailto:support@example.com',
+        href: `mailto:${usePage().props.supportEmail}`,
         external: true,
       },
     ],
