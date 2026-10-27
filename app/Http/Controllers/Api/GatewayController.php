@@ -30,7 +30,7 @@ final class GatewayController extends Controller
     /** Request fields passed to OpenAI; anything else is dropped. */
     private const RESPONSES_FIELDS = [
         'model', 'instructions', 'input', 'tools', 'tool_choice', 'parallel_tool_calls', 'previous_response_id',
-        'stream', 'text', 'reasoning', 'max_output_tokens', 'temperature', 'top_p',
+        'stream', 'text', 'reasoning', 'max_output_tokens', 'temperature', 'top_p', 'prompt_cache_key',
     ];
 
     public function me(Request $request): JsonResponse

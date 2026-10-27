@@ -6289,3 +6289,11 @@
 #78 /Users/4star/Projects/nova-web/vendor/pestphp/pest/bin/pest(192): {closure:/Users/4star/Projects/nova-web/vendor/pestphp/pest/bin/pest:18}()
 #79 {main}
 "} 
+[2026-10-27 13:01:32] local.ERROR: Maximum execution time of 30 seconds exceeded {"userId":1,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 30 seconds exceeded at /Users/4star/Projects/nova-web/vendor/guzzlehttp/guzzle/src/Handler/StreamHandler.php:243)
+[stacktrace]
+#0 {main}
+"} 
+[2026-10-27 13:01:32] local.ERROR: Maximum execution time of 30 seconds exceeded {"userId":1,"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Maximum execution time of 30 seconds exceeded at /Users/4star/Projects/nova-web/vendor/guzzlehttp/guzzle/src/Handler/StreamHandler.php:243)
+[stacktrace]
+#0 {main}
+"} 
