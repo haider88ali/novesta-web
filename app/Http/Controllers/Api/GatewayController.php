@@ -171,8 +171,8 @@ final class GatewayController extends Controller
             return response()->json($upstream->json() ?? ['error' => ['message' => 'The voice service failed.']], $upstream->status());
         }
 
-        // ~900 characters of speech per minute
-        $minutes = max(0.05, round(mb_strlen($data['input']) / 900, 3));
+        // ~900 characters of speech per minute; Nova speaks sentence by sentence, so the minimum is about a second
+        $minutes = max(0.02, round(mb_strlen($data['input']) / 900, 3));
         $this->record($user, $request, 'voice', null, $data['model'], [], $minutes);
 
         $stream = $upstream->toPsrResponse()->getBody();
