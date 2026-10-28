@@ -33,6 +33,7 @@ When you ask :app something, the app sends the request through our server to **O
 - text :app reads aloud to you with an AI voice;
 - context :app needs to answer well: the date and time, your saved memories and routines, and earlier messages in the conversation;
 - the contents of files or code :app reads for you, results of commands you approved, and a screenshot of your screen only when you ask :app to look at it;
+- the meetings you ask :app to schedule, and the calendar events on the days you ask about ("what's on my calendar tomorrow?");
 - your descriptions for UI designs.
 
 Web searches are performed by OpenAI's search tool. OpenAI processes this data under its API business terms. It does **not** use API data to train its models, and it keeps it for a limited time (generally up to 30 days) for abuse monitoring and so :app can continue a conversation. Our server passes requests through and doesn't save their content.
@@ -41,6 +42,7 @@ Web searches are performed by OpenAI's search tool. OpenAI processes this data u
 
 - **Paddle** processes payments, taxes and invoices as our Merchant of Record and has its own privacy policy.
 - **Prayer times:** when you ask for them, the app sends your city (not your exact location) to the Aladhan prayer-times service.
+- **Calendar:** :app adds, reads and cancels events in your computer's own Calendar app when you ask; nothing is copied to our servers. On computers without it, :app creates a standard calendar invite file in your Downloads folder.
 - **WhatsApp:** :app can look up a name in your computer's Contacts to find a number. This happens on your computer, and the message is only sent if you press send in WhatsApp.
 - **Figma:** designs go from the app to the :app Figma plugin on your own computer.
 - **Email:** we use an email provider to send sign-in, account and billing emails.

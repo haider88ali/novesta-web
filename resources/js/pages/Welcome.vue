@@ -40,11 +40,11 @@ const examples = [
   { say: 'Work on my shop project and run the tests', does: 'Opens the project, runs them after you approve', icon: 'lucide:square-terminal' },
   { say: 'Look at my screen — what does this error mean?', does: 'Reads your screen and explains it', icon: 'lucide:scan-eye' },
   { say: 'Design a login screen, then make it in React', does: 'Designs it, sends it to Figma, writes the code', icon: 'lucide:palette' },
+  { say: 'Programa una reunión con Sarah mañana a las 2', does: 'Adds it to your calendar, in Spanish or any of 18 languages', icon: 'lucide:calendar-plus' },
   { say: 'Good morning', does: 'Weather, your reminders and the top news in one briefing', icon: 'lucide:sunrise' },
   { say: 'نووا، کل صبح 9 بجے علی کو کال کرنے کی یاد دہانی', does: 'Understands and replies in Urdu, sets the reminder', icon: 'lucide:languages', rtl: true },
   { say: 'Aaj New York mein Asr kitne baje hai?', does: 'Today\'s prayer times for your city, in Roman Urdu', icon: 'lucide:moon-star' },
   { say: 'WhatsApp Ahmed that I\'ll be 10 minutes late', does: 'Finds the contact and gets the message ready to send', icon: 'lucide:message-circle' },
-  { say: 'Abre Slack y pon el volumen al 30', does: 'Controls your computer — in Spanish, Arabic, French and more', icon: 'lucide:monitor-cog' },
 ]
 
 const features = [
@@ -53,7 +53,7 @@ const features = [
   { icon: 'lucide:code-xml', title: 'Code on command', text: 'Ask for scripts, components or fixes. Code is highlighted, one click to copy, and Nova can save it straight to a file.' },
   { icon: 'lucide:square-terminal', title: 'Developer project mode', text: 'Say "work on my shop project". Nova reads and searches your code, then runs tests or edits files — always after you approve the exact command or change.' },
   { icon: 'lucide:scan-eye', title: 'Sees your screen', text: 'Say "look at my screen" and Nova explains the error, chart or page in front of you — only when you ask.' },
-  { icon: 'lucide:notebook-pen', title: 'Meeting copilot', text: 'Nova listens to your meeting and writes live notes, then gives you a summary, decisions, action items and a ready follow-up email.' },
+  { icon: 'lucide:notebook-pen', title: 'Meetings, handled', text: 'Say "schedule a meeting tomorrow at 2 pm" and it\'s in your calendar. During the meeting Nova writes live notes, then gives you a summary, decisions, action items and a follow-up email.' },
   { icon: 'lucide:figma', title: 'Design → Figma → code', text: 'Describe a screen and Nova designs it and sends it to Figma as editable layers. Change it by voice, then turn it into Vue, React or HTML with Tailwind.' },
   { icon: 'lucide:monitor-cog', title: 'Controls your computer', text: 'Open apps, files, folders and websites, change volume, play music, take screenshots, check your battery and prepare WhatsApp messages.' },
   { icon: 'lucide:sunrise', title: 'Routines, reminders & memory', text: 'Say "good morning" for your daily briefing, schedule routines and set reminders by voice. Nova remembers your preferences and history — on your own computer.' },
@@ -72,7 +72,7 @@ const faqs = [
   { q: 'What do I need to run Nova?', a: 'A Mac or Windows computer with a microphone and an internet connection. No extra hardware or setup is needed.' },
   { q: 'Is there a free trial?', a: `Yes. Every new account gets ${props.trialDays} days of ${trialPlan.value?.name ?? 'Pro'} for free, with no card required. After that you stay on the Free plan unless you choose to upgrade.` },
   { q: 'Can Nova do anything on my computer without asking?', a: 'Simple actions — opening apps, folders, files and websites, volume, music, screenshots and battery status — happen when you ask for them. Anything that changes your work needs your approval: in project mode Nova shows you the exact command or file change first and only runs it when you click Approve. It never reads secrets like .env files, passwords or keys, never looks at your screen unless you ask, and never sends a WhatsApp message itself — you press send.' },
-  { q: 'Does everything work on Windows?', a: 'Talking, web search, code, project mode, meeting notes, designs, routines, reminders, prayer times and quick actions work on both Mac and Windows. Controlling apps and system settings, opening files, screenshots, screen understanding and WhatsApp are Mac-only for now, with Windows support coming.' },
+  { q: 'Does everything work on Windows?', a: 'Talking, web search, code, project mode, scheduling meetings, meeting notes, designs, routines, reminders, prayer times and quick actions work on both Mac and Windows. Controlling apps and system settings, opening files, screenshots, screen understanding, WhatsApp and reading or cancelling calendar events are Mac-only for now, with Windows support coming.' },
   { q: 'How do I talk to Nova?', a: 'Press Option+Space on a Mac or Alt+Space on Windows from any app, or click the microphone in Nova. Speak naturally; Nova answers when you stop. You can also type.' },
   { q: 'Where is my data stored?', a: 'Your chat history, memories and reminders are stored on your own computer. To answer you, each request is sent through Nova\'s servers to our AI provider (OpenAI), which may keep it for a limited time under its own data policy. Nova\'s servers record usage counts for your plan limits, not the content of your conversations.' },
   { q: 'Which languages does Nova speak?', a: `${languages.length} languages for listening, written answers and the spoken voice: English, Urdu, Roman Urdu (Urdu in English letters), Hindi, Arabic, Bengali, Persian, Turkish, Spanish, French, German, Portuguese, Italian, Russian, Chinese, Japanese, Korean and Indonesian. Pick one in the app; you can also mix it with English in the same sentence. Code, file names and technical terms stay in English.` },
