@@ -36,13 +36,13 @@ const languages = [
 ]
 
 const examples = [
-  { say: 'What\'s new in Laravel this month?', does: 'Searches the web and answers with sources', icon: 'lucide:globe' },
+  { say: 'Will it rain in London this weekend?', does: 'Searches the web and answers with sources', icon: 'lucide:globe' },
   { say: 'Work on my shop project and run the tests', does: 'Opens the project, runs them after you approve', icon: 'lucide:square-terminal' },
   { say: 'Look at my screen — what does this error mean?', does: 'Reads your screen and explains it', icon: 'lucide:scan-eye' },
   { say: 'Design a login screen, then make it in React', does: 'Designs it, sends it to Figma, writes the code', icon: 'lucide:palette' },
   { say: 'Good morning', does: 'Weather, your reminders and the top news in one briefing', icon: 'lucide:sunrise' },
   { say: 'نووا، کل صبح 9 بجے علی کو کال کرنے کی یاد دہانی', does: 'Understands and replies in Urdu, sets the reminder', icon: 'lucide:languages', rtl: true },
-  { say: 'Aaj Lahore mein Asr kitne baje hai?', does: 'Today\'s prayer times for your city, in Roman Urdu', icon: 'lucide:moon-star' },
+  { say: 'Aaj New York mein Asr kitne baje hai?', does: 'Today\'s prayer times for your city, in Roman Urdu', icon: 'lucide:moon-star' },
   { say: 'WhatsApp Ahmed that I\'ll be 10 minutes late', does: 'Finds the contact and gets the message ready to send', icon: 'lucide:message-circle' },
   { say: 'Abre Slack y pon el volumen al 30', does: 'Controls your computer — in Spanish, Arabic, French and more', icon: 'lucide:monitor-cog' },
 ]
