@@ -164,6 +164,12 @@ test('speech to text is forwarded and logged, and needs messages left', function
     // Other models are rejected; an exhausted message quota blocks transcription too
     $this->withToken($this->token)->post(route('api.transcribe'), ['file' => $audio, 'model' => 'whisper-1'], ['Accept' => 'application/json'])
         ->assertUnprocessable();
+
+    // Any of Nova's languages may be sent as a hint; unknown ones are rejected
+    $this->withToken($this->token)->post(route('api.transcribe'), ['file' => $audio, 'model' => 'gpt-4o-mini-transcribe', 'language' => 'ar'], ['Accept' => 'application/json'])
+        ->assertOk();
+    $this->withToken($this->token)->post(route('api.transcribe'), ['file' => $audio, 'model' => 'gpt-4o-mini-transcribe', 'language' => 'xx'], ['Accept' => 'application/json'])
+        ->assertUnprocessable();
     Config::set('nova.trial_days', 0);
     Config::set('nova.plans.free.limits.messages', 0);
     $this->withToken($this->token)->post(route('api.transcribe'), ['file' => $audio, 'model' => 'gpt-4o-mini-transcribe'], ['Accept' => 'application/json'])

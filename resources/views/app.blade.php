@@ -20,7 +20,7 @@
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
             "name": "Nova",
-            "description": "Nova is a voice AI assistant for Mac and Windows: talk to search the web, write code, design UIs for Figma and control your computer — in English, Urdu and Hindi.",
+            "description": "Nova is a voice AI assistant for Mac and Windows: talk to search the web, write code, design UIs for Figma and control your computer — in 18 languages, including English, Spanish, Arabic, Urdu, Hindi and Chinese.",
             "applicationCategory": "ProductivityApplication",
             "operatingSystem": "macOS, Windows",
             "offers": {

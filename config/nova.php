@@ -44,7 +44,7 @@ return [
             'paddle_price_id' => env('PADDLE_PRICE_PRO'),
             'description' => 'For people who use Nova every day.',
             'limits' => ['messages' => 2000, 'searches' => 300, 'designs' => 50, 'voice_minutes' => 120, 'devices' => 2],
-            'features' => ['2,000 messages / month', '300 web searches', '50 UI designs → Figma', '120 min Urdu/AI voice', '2 devices'],
+            'features' => ['2,000 messages / month', '300 web searches', '50 UI designs → Figma', '120 min AI voice', '2 devices'],
         ],
         'business' => [
             'name' => 'Business',
@@ -52,7 +52,7 @@ return [
             'paddle_price_id' => env('PADDLE_PRICE_BUSINESS'),
             'description' => 'For heavy users and small teams.',
             'limits' => ['messages' => 6000, 'searches' => 1000, 'designs' => 200, 'voice_minutes' => 500, 'devices' => 5],
-            'features' => ['6,000 messages / month', '1,000 web searches', '200 UI designs → Figma', '500 min Urdu/AI voice', '5 devices', 'Priority support'],
+            'features' => ['6,000 messages / month', '1,000 web searches', '200 UI designs → Figma', '500 min AI voice', '5 devices', 'Priority support'],
         ],
     ],
 
@@ -71,6 +71,8 @@ return [
         'chat_models' => ['gpt-4o-mini', 'gpt-4.1-mini', 'gpt-4.1'],
         'tts_models' => ['gpt-4o-mini-tts'],
         'stt_models' => ['gpt-4o-mini-transcribe'],
+        // Language hints the desktop app may send with a recording (ISO 639-1; Roman Urdu is sent as ur)
+        'stt_languages' => ['en', 'ur', 'hi', 'ar', 'bn', 'fa', 'tr', 'es', 'fr', 'de', 'pt', 'it', 'ru', 'zh', 'ja', 'ko', 'id'],
         'tts_voices' => ['nova', 'alloy', 'shimmer', 'echo', 'onyx', 'fable', 'coral', 'sage'],
         'max_output_tokens' => 16000,
         'allowed_tools' => ['web_search', 'function'],

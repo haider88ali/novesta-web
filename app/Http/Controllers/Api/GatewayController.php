@@ -195,7 +195,7 @@ final class GatewayController extends Controller
         $data = $request->validate([
             'file' => ['required', 'file', 'max:10240', 'mimetypes:audio/webm,video/webm,audio/ogg,audio/mp4,audio/mpeg,audio/wav,audio/x-wav'],
             'model' => ['required', Rule::in(Config::array('nova.openai.stt_models'))],
-            'language' => ['nullable', 'in:en,ur,hi'],
+            'language' => ['nullable', Rule::in(Config::array('nova.openai.stt_languages'))],
             'prompt' => ['nullable', 'string', 'max:300'],
             'duration' => ['nullable', 'numeric', 'min:0', 'max:600'],   // seconds, reported by the app for cost logging
         ]);

@@ -27,6 +27,14 @@ const loggedIn = computed(() => Boolean(page.props.auth?.user))
 const startHref = computed(() => (loggedIn.value ? '/dashboard' : '/register'))
 const trialPlan = computed(() => props.plans.find(p => p.key === 'pro'))
 
+// The desktop app's languages (voice-assistant/languages.js)
+const languages = [
+  { label: 'English' }, { label: 'اردو', urdu: true, rtl: true }, { label: 'Roman Urdu' }, { label: 'हिन्दी' },
+  { label: 'العربية', rtl: true }, { label: 'বাংলা' }, { label: 'فارسی', rtl: true }, { label: 'Türkçe' },
+  { label: 'Español' }, { label: 'Français' }, { label: 'Deutsch' }, { label: 'Português' }, { label: 'Italiano' },
+  { label: 'Русский' }, { label: '中文' }, { label: '日本語' }, { label: '한국어' }, { label: 'Bahasa Indonesia' },
+]
+
 const examples = [
   { say: 'What\'s new in Laravel this month?', does: 'Searches the web and answers with sources', icon: 'lucide:globe' },
   { say: 'Work on my shop project and run the tests', does: 'Opens the project, runs them after you approve', icon: 'lucide:square-terminal' },
@@ -36,7 +44,7 @@ const examples = [
   { say: 'نووا، کل صبح 9 بجے علی کو کال کرنے کی یاد دہانی', does: 'Understands and replies in Urdu, sets the reminder', icon: 'lucide:languages', rtl: true },
   { say: 'Aaj Lahore mein Asr kitne baje hai?', does: 'Today\'s prayer times for your city, in Roman Urdu', icon: 'lucide:moon-star' },
   { say: 'WhatsApp Ahmed that I\'ll be 10 minutes late', does: 'Finds the contact and gets the message ready to send', icon: 'lucide:message-circle' },
-  { say: 'Open Slack and set the volume to 30', does: 'Controls your apps and system settings', icon: 'lucide:monitor-cog' },
+  { say: 'Abre Slack y pon el volumen al 30', does: 'Controls your computer — in Spanish, Arabic, French and more', icon: 'lucide:monitor-cog' },
 ]
 
 const features = [
@@ -49,7 +57,7 @@ const features = [
   { icon: 'lucide:figma', title: 'Design → Figma → code', text: 'Describe a screen and Nova designs it and sends it to Figma as editable layers. Change it by voice, then turn it into Vue, React or HTML with Tailwind.' },
   { icon: 'lucide:monitor-cog', title: 'Controls your computer', text: 'Open apps, files, folders and websites, change volume, play music, take screenshots, check your battery and prepare WhatsApp messages.' },
   { icon: 'lucide:sunrise', title: 'Routines, reminders & memory', text: 'Say "good morning" for your daily briefing, schedule routines and set reminders by voice. Nova remembers your preferences and history — on your own computer.' },
-  { icon: 'lucide:languages', title: 'Urdu-first', text: 'English, اردو, Roman Urdu and हिन्दी — spoken and written. Ask for namaz times for your city anytime.' },
+  { icon: 'lucide:languages', title: `Speaks ${languages.length} languages`, text: 'Talk and get answers in English, Español, Français, العربية, हिन्दी, 中文, 日本語 and more — including Urdu, Roman Urdu and namaz times for your city.' },
   { icon: 'lucide:clipboard-type', title: 'Quick actions on copied text', text: 'Copy any text and press Cmd/Ctrl+Shift+Space to summarise, translate, fix the grammar or write a reply.' },
   { icon: 'lucide:smile', title: 'Your voice, your style', text: 'Pick from natural AI voices and personalities — calm JARVIS, friendly, professional, or Bhai mode in Roman Urdu.' },
 ]
@@ -67,7 +75,7 @@ const faqs = [
   { q: 'Does everything work on Windows?', a: 'Talking, web search, code, project mode, meeting notes, designs, routines, reminders, prayer times and quick actions work on both Mac and Windows. Controlling apps and system settings, opening files, screenshots, screen understanding and WhatsApp are Mac-only for now, with Windows support coming.' },
   { q: 'How do I talk to Nova?', a: 'Press Option+Space on a Mac or Alt+Space on Windows from any app, or click the microphone in Nova. Speak naturally; Nova answers when you stop. You can also type.' },
   { q: 'Where is my data stored?', a: 'Your chat history, memories and reminders are stored on your own computer. To answer you, each request is sent through Nova\'s servers to our AI provider (OpenAI), which may keep it for a limited time under its own data policy. Nova\'s servers record usage counts for your plan limits, not the content of your conversations.' },
-  { q: 'Which languages does Nova speak?', a: 'English, Urdu, Roman Urdu and Hindi — for listening, written answers and the spoken voice. Urdu is written in proper Nastaliq script; Roman Urdu answers in Urdu written with English letters. Code, file names and technical terms stay in English.' },
+  { q: 'Which languages does Nova speak?', a: `${languages.length} languages for listening, written answers and the spoken voice: English, Urdu, Roman Urdu (Urdu in English letters), Hindi, Arabic, Bengali, Persian, Turkish, Spanish, French, German, Portuguese, Italian, Russian, Chinese, Japanese, Korean and Indonesian. Pick one in the app; you can also mix it with English in the same sentence. Code, file names and technical terms stay in English.` },
   { q: 'How does the Figma integration work?', a: 'Ask Nova for a design and it appears in Nova instantly. With the free Nova Bridge plugin open in Figma\'s desktop app, the same design is created on your Figma page as editable frames, text and auto layout.' },
   { q: 'How do I pay, and can I cancel?', a: 'Payments are handled securely by Paddle, which supports cards and local taxes worldwide. You can switch plans or cancel anytime from your account; you keep your plan until the end of the paid month.' },
   { q: 'How many computers can I use?', a: 'It depends on your plan — see the device limit in each plan above. You can sign out an old computer from your account at any time.' },
@@ -82,7 +90,7 @@ const faqs = [
       <div class="container relative mx-auto grid items-center gap-12 px-4 py-20 sm:py-28 lg:grid-cols-2">
         <div class="text-center lg:text-left">
           <Badge variant="outline" class="mb-6 rounded-full border-cyan-500/40 bg-cyan-500/10 px-4 py-1 text-xs sm:text-sm">
-            🎙️ Now speaks English · <span class="font-urdu">اردو</span> · हिन्दी
+            🎙️ Speaks {{ languages.length }} languages · English · Español · <bdi>العربية</bdi> · <bdi class="font-urdu">اردو</bdi> · 中文
           </Badge>
           <h1 class="text-4xl font-bold tracking-tight sm:text-6xl">
             Your voice AI assistant for
@@ -118,8 +126,8 @@ const faqs = [
           <div class="bubble b2">
             ✓ Opened Visual Studio Code
           </div>
-          <div class="bubble b3 font-urdu" dir="rtl">
-            آج لاہور کا موسم کیسا ہے؟
+          <div class="bubble b3" dir="rtl">
+            ما هو الطقس في دبي اليوم؟
           </div>
         </div>
       </div>
@@ -172,6 +180,22 @@ const faqs = [
               {{ f.text }}
             </p>
           </div>
+        </div>
+        <div class="mx-auto mt-12 max-w-4xl text-center">
+          <p class="mb-4 text-sm font-medium text-muted-foreground">
+            Talk to Nova in your language
+          </p>
+          <ul class="flex flex-wrap justify-center gap-2">
+            <li
+              v-for="l in languages"
+              :key="l.label"
+              :dir="l.rtl ? 'rtl' : 'ltr'"
+              class="rounded-full border bg-card px-3 py-1 text-sm"
+              :class="l.urdu ? 'font-urdu' : ''"
+            >
+              {{ l.label }}
+            </li>
+          </ul>
         </div>
       </div>
     </section>
