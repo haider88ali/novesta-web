@@ -165,7 +165,7 @@ test('speech to text is forwarded and logged, and needs messages left', function
     $this->withToken($this->token)->post(route('api.transcribe'), ['file' => $audio, 'model' => 'whisper-1'], ['Accept' => 'application/json'])
         ->assertUnprocessable();
 
-    // Any of Nova's languages may be sent as a hint; unknown ones are rejected
+    // Any of Novesta's languages may be sent as a hint; unknown ones are rejected
     $this->withToken($this->token)->post(route('api.transcribe'), ['file' => $audio, 'model' => 'gpt-4o-mini-transcribe', 'language' => 'ar'], ['Accept' => 'application/json'])
         ->assertOk();
     $this->withToken($this->token)->post(route('api.transcribe'), ['file' => $audio, 'model' => 'gpt-4o-mini-transcribe', 'language' => 'xx'], ['Accept' => 'application/json'])

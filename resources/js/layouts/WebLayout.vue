@@ -46,9 +46,9 @@ function toggleMenu() {
     >
       <div class="container mx-auto flex h-16 items-center justify-between px-4">
         <div class="flex items-center">
-          <a class="flex items-center gap-2" href="/" aria-label="Nova home">
+          <a class="flex items-center gap-2" href="/" aria-label="Novesta home">
             <span class="nova-mark" aria-hidden="true" />
-            <span class="font-bold tracking-[0.25em]">NOVA</span>
+            <span class="font-bold tracking-[0.25em]">NOVESTA</span>
           </a>
           <nav class="ml-8 hidden items-center space-x-6 text-sm font-medium md:flex">
             <a
@@ -122,7 +122,7 @@ function toggleMenu() {
       <div class="container mx-auto flex flex-col items-center justify-between gap-4 px-4 py-8 text-sm text-muted-foreground sm:flex-row">
         <p class="flex items-center gap-2">
           <span class="nova-mark nova-mark--small" aria-hidden="true" />
-          © {{ year }} Nova. All rights reserved.
+          © {{ year }} Novesta. All rights reserved.
         </p>
         <nav class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           <a href="/terms-of-service" class="hover:text-foreground">Terms</a>
@@ -136,7 +136,7 @@ function toggleMenu() {
 </template>
 
 <style scoped>
-/* Small glowing orb used as the Nova logo mark */
+/* Small glowing orb used as the Novesta logo mark */
 .nova-mark {
   width: 22px; height: 22px; border-radius: 9999px; flex-shrink: 0;
   background: radial-gradient(circle at 40% 35%, #fff 0%, #67e8f9 25%, #06b6d4 55%, #164e63 90%);

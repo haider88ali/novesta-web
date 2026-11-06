@@ -23,10 +23,10 @@ function approve() {
 </script>
 
 <template>
-  <AppLayout title="Sign in Nova">
+  <AppLayout title="Sign in Novesta">
     <template #header>
       <h2 class="text-xl font-semibold leading-tight">
-        Sign in to Nova
+        Sign in to Novesta
       </h2>
     </template>
 
@@ -35,7 +35,7 @@ function approve() {
         <CardHeader class="items-center text-center">
           <Icon icon="lucide:circle-check" class="size-12 text-green-500" />
           <CardTitle>You're signed in</CardTitle>
-          <CardDescription>Go back to Nova — it will continue in a few seconds. You can close this tab.</CardDescription>
+          <CardDescription>Go back to Novesta — it will continue in a few seconds. You can close this tab.</CardDescription>
         </CardHeader>
         <CardContent>
           <Button as-child variant="outline" class="w-full">
@@ -50,7 +50,7 @@ function approve() {
         <CardHeader>
           <CardTitle>Approve this computer</CardTitle>
           <CardDescription>
-            Check that the code matches the one shown in the Nova app, then approve. Only approve codes you started yourself.
+            Check that the code matches the one shown in the Novesta app, then approve. Only approve codes you started yourself.
           </CardDescription>
         </CardHeader>
         <CardContent>

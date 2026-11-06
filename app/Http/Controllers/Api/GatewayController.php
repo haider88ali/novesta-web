@@ -19,7 +19,7 @@ use Psr\Http\Message\StreamInterface;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
- * OpenAI-compatible gateway for the Nova desktop app.
+ * OpenAI-compatible gateway for the Novesta desktop app.
  *
  * The app points the OpenAI SDK at /api/v1 with its device token as the API key. Every request is
  * checked against the user's plan, stripped down to allowed models/tools, sent to OpenAI with the
@@ -67,7 +67,7 @@ final class GatewayController extends Controller
         /** @var User $user */
         $user = $request->user();
         if (! $key = Config::get('nova.openai.key')) {
-            return $this->error('Nova AI is not configured on the server yet.', 503, 'not_configured');
+            return $this->error('Novesta AI is not configured on the server yet.', 503, 'not_configured');
         }
 
         $kind = $request->header('X-Nova-Kind') === 'design' ? 'design' : 'message';
@@ -86,7 +86,7 @@ final class GatewayController extends Controller
         }
 
         if (! in_array($body->model ?? null, Config::array('nova.openai.chat_models'), true)) {
-            return $this->error('This model is not available in Nova.', 400, 'invalid_model');
+            return $this->error('This model is not available in Novesta.', 400, 'invalid_model');
         }
         // Only continue conversations this user started
         if (isset($body->previous_response_id) && ! UsageEvent::query()
@@ -152,7 +152,7 @@ final class GatewayController extends Controller
         /** @var User $user */
         $user = $request->user();
         if (! $key = Config::get('nova.openai.key')) {
-            return $this->error('Nova AI is not configured on the server yet.', 503, 'not_configured');
+            return $this->error('Novesta AI is not configured on the server yet.', 503, 'not_configured');
         }
 
         $data = $request->validate([
@@ -171,7 +171,7 @@ final class GatewayController extends Controller
             return response()->json($upstream->json() ?? ['error' => ['message' => 'The voice service failed.']], $upstream->status());
         }
 
-        // ~900 characters of speech per minute; Nova speaks sentence by sentence, so the minimum is about a second
+        // ~900 characters of speech per minute; Novesta speaks sentence by sentence, so the minimum is about a second
         $minutes = max(0.02, round(mb_strlen($data['input']) / 900, 3));
         $this->record($user, $request, 'voice', null, $data['model'], [], $minutes);
 
@@ -189,7 +189,7 @@ final class GatewayController extends Controller
         /** @var User $user */
         $user = $request->user();
         if (! $key = Config::get('nova.openai.key')) {
-            return $this->error('Nova AI is not configured on the server yet.', 503, 'not_configured');
+            return $this->error('Novesta AI is not configured on the server yet.', 503, 'not_configured');
         }
 
         $data = $request->validate([

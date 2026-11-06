@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LegalController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\BillingController;
-use App\Http\Controllers\LegalController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\User\OauthController;
@@ -13,7 +13,7 @@ use App\Http\Controllers\User\LoginLinkController;
 
 Route::get('/', [WelcomeController::class, 'home'])->name('home');
 
-// Replace Jetstream's plain legal pages with Nova's (filled from config/nova.php)
+// Replace Jetstream's plain legal pages with Novesta's (filled from config/nova.php)
 Route::get('/terms-of-service', [LegalController::class, 'terms'])->name('terms.show');
 Route::get('/privacy-policy', [LegalController::class, 'privacy'])->name('policy.show');
 Route::get('/refund-policy', [LegalController::class, 'refunds'])->name('refunds.show');
@@ -44,8 +44,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::post('/device', [DeviceController::class, 'approve'])->middleware('throttle:20,1')->name('device.approve');
     Route::delete('/devices/{token}', [DeviceController::class, 'destroy'])->name('devices.destroy');
 
-    // Billing (Paddle)
+    // Billing (Stripe)
     Route::get('/billing', [BillingController::class, 'index'])->name('billing');
+    Route::post('/billing/checkout', [BillingController::class, 'checkout'])->name('billing.checkout');
     Route::post('/billing/swap', [BillingController::class, 'swap'])->name('billing.swap');
     Route::post('/billing/cancel', [BillingController::class, 'cancel'])->name('billing.cancel');
     Route::post('/billing/resume', [BillingController::class, 'resume'])->name('billing.resume');

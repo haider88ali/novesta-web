@@ -37,7 +37,7 @@ final class CreateNewUser implements CreatesNewUsers
             'email' => $input['email'],
             'password' => Arr::get($input, 'password') ? Hash::make($input['password']) : Str::random(12),
         ]), function (User $user): void {
-            // The Paddle customer is created at checkout; new users start on the free trial (see App\Services\Quota)
+            // The Stripe customer is created at checkout; new users start on the free trial (see App\Services\Quota)
             $this->createTeam($user);
         }));
     }

@@ -8,6 +8,7 @@ use App\Models\User;
 use Carbon\CarbonImmutable;
 use Knuckles\Scribe\Scribe;
 use Illuminate\Http\Request;
+use Laravel\Cashier\Cashier;
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
@@ -54,6 +55,17 @@ final class AppServiceProvider extends ServiceProvider
         $this->configureVite();
         $this->configureScribeDocumentation();
         $this->configureRateLimiting();
+        $this->configureBilling();
+    }
+
+    /**
+     * Stripe Tax adds sales tax/VAT at checkout when it is turned on (STRIPE_TAX=true).
+     */
+    private function configureBilling(): void
+    {
+        if (config('nova.stripe_tax')) {
+            Cashier::calculateTaxes();
+        }
     }
 
     /**

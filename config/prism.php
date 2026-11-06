@@ -6,7 +6,7 @@ return [
     'prism_server' => [
         // The middleware that will be applied to the Prism Server routes.
         'middleware' => ['web', 'verified', 'auth'],
-        // Off: all AI traffic goes through Nova's metered gateway (App\Http\Controllers\Api\GatewayController)
+        // Off: all AI traffic goes through Novesta's metered gateway (App\Http\Controllers\Api\GatewayController)
         'enabled' => env('PRISM_SERVER_ENABLED', false),
     ],
     'providers' => [

@@ -6,9 +6,9 @@ namespace App\Models;
 
 use Filament\Panel;
 use Carbon\CarbonImmutable;
-use Laravel\Paddle\Billable;
+use Laravel\Cashier\Billable;
 use Laravel\Jetstream\HasTeams;
-use Laravel\Paddle\Subscription;
+use Laravel\Cashier\Subscription;
 use Laravel\Sanctum\HasApiTokens;
 use Database\Factories\UserFactory;
 use Laravel\Jetstream\HasProfilePhoto;
@@ -39,6 +39,10 @@ use Illuminate\Notifications\DatabaseNotificationCollection;
  * @property string|null $two_factor_secret
  * @property string|null $two_factor_recovery_codes
  * @property string|null $two_factor_confirmed_at
+ * @property string|null $stripe_id
+ * @property string|null $pm_type
+ * @property string|null $pm_last_four
+ * @property CarbonImmutable|null $trial_ends_at
  * @property-read Team|null $currentTeam
  * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
  * @property-read int|null $notifications_count

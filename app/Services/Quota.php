@@ -7,17 +7,19 @@ namespace App\Services;
 use App\Models\User;
 use App\Models\UsageEvent;
 use Illuminate\Support\Facades\Config;
+use Laravel\Sanctum\PersonalAccessToken;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * Which plan a user is on, how much they have used this month, and whether a request fits their limits.
  */
 final class Quota
 {
-    /** Plan key: an active Paddle subscription wins, then the free trial, then "free". */
+    /** Plan key: an active Stripe subscription wins, then the free trial, then "free". */
     public static function planKey(User $user): string
     {
         foreach (self::plans() as $key => $plan) {
-            if ($plan['paddle_price_id'] && $user->subscribed('default', $plan['paddle_price_id'])) {
+            if ($plan['stripe_price_id'] && $user->subscribed('default', $plan['stripe_price_id'])) {
                 return $key;
             }
         }
@@ -95,7 +97,7 @@ final class Quota
         return max(0, self::limits($user)['searches'] - self::usage($user)['searches']);
     }
 
-    /** @return \Illuminate\Database\Eloquent\Builder<\Laravel\Sanctum\PersonalAccessToken> */
+    /** @return Builder<PersonalAccessToken> */
     public static function deviceTokens(User $user)
     {
         return $user->tokens()->getQuery()->where('abilities', 'like', '%nova:device%');

@@ -18,7 +18,7 @@ These terms are an agreement between you and :operator ("we", "us"), who runs :a
 
 - :app has a Free plan and paid plans (currently Pro at :pro_price/month and Business at :business_price/month). Each plan has the monthly limits shown on our pricing page: messages, web searches, UI designs, AI voice minutes and devices. Limits reset each calendar month and unused amounts don't carry over.
 - New accounts get a :trial_days-day trial of Pro. When the trial ends you move to the Free plan unless you subscribe.
-- Payments are processed by **Paddle.com**, our reseller and Merchant of Record. Paddle handles checkout, invoices, sales tax/VAT and payment methods, and your purchase is also covered by Paddle's buyer terms.
+- You buy plans from :operator. Payments are processed securely by **Stripe**, which handles checkout, card details and receipts. Prices are in USD; any sales tax or VAT that applies where you live is shown at checkout before you pay.
 - Subscriptions renew automatically each month until you cancel. You can cancel at any time from the Billing page; you keep your paid plan until the end of the period you've paid for.
 - We may change prices or limits. We'll tell you at least 14 days before a price change affects your subscription, and you can cancel before it does.
 - Refunds are covered by our [Refund Policy](/refund-policy).
@@ -61,7 +61,7 @@ We give you a personal, non-exclusive, non-transferable licence to install and u
 
 ## 10. Third-party services
 
-:app works with services we don't control, such as OpenAI, Paddle, Figma, WhatsApp, web search results and prayer-time data. Their own terms apply, and we're not responsible for their availability or content.
+:app works with services we don't control, such as OpenAI, Stripe, Figma, WhatsApp, web search results and prayer-time data. Their own terms apply, and we're not responsible for their availability or content.
 
 ## 11. Availability and changes
 

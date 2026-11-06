@@ -22,7 +22,7 @@ You can delete them in the app (history, memories, reminders) or by removing :ap
 - **Account:** your name, email address, hashed password and, if you sign in with GitHub or Google, your ID with that provider.
 - **Devices:** a name for each signed-in device and when it was last used, so you can see and sign them out.
 - **Usage records:** for each AI request, the type (message, design, voice, transcription), model, token counts, number of web searches, voice minutes, estimated cost, time and an AI response reference. We use these to enforce your plan's limits, show your usage and prevent abuse. **They don't include what you said or what :app answered.**
-- **Billing:** your plan, subscription status and Paddle customer and transaction IDs. Card and payment details are handled by Paddle; we never see your full card number.
+- **Billing:** your plan, subscription status, Stripe customer and subscription IDs, and the type and last four digits of your card. Card and payment details are handled by Stripe; we never see or store your full card number.
 - **Technical logs:** IP address, browser and error details in our server logs, kept for security and fixing problems.
 
 ## 3. What is sent to our AI provider
@@ -40,7 +40,7 @@ Web searches are performed by OpenAI's search tool. OpenAI processes this data u
 
 ## 4. Other services
 
-- **Paddle** processes payments, taxes and invoices as our Merchant of Record and has its own privacy policy.
+- **Stripe** processes payments, receipts and invoices for us, and checks payments for fraud. It receives your name, email, card and billing address at checkout and has its own privacy policy.
 - **Prayer times:** when you ask for them, the app sends your city (not your exact location) to the Aladhan prayer-times service.
 - **Calendar:** :app adds, reads and cancels events in your computer's own Calendar app when you ask; nothing is copied to our servers. On computers without it, :app creates a standard calendar invite file in your Downloads folder.
 - **WhatsApp:** :app can look up a name in your computer's Contacts to find a number. This happens on your computer, and the message is only sent if you press send in WhatsApp.
@@ -65,7 +65,7 @@ The website uses only essential cookies: one to keep you signed in, one for secu
 
 - Account and device data: while your account is open.
 - Usage records: up to 24 months, for limits, billing questions and abuse prevention.
-- Billing records: as long as tax law requires (usually up to 7 years), mostly held by Paddle.
+- Billing records: as long as tax law requires (usually up to 7 years), mostly held by Stripe.
 - Server logs: up to 30 days.
 
 ## 8. Your rights
@@ -82,7 +82,7 @@ Traffic to our website and AI service is encrypted (HTTPS). Passwords are hashed
 
 ## 11. International transfers
 
-Our providers, including OpenAI and Paddle, may process data in countries other than yours, such as the United States. We rely on their contractual safeguards for these transfers.
+Our providers, including OpenAI and Stripe, may process data in countries other than yours, such as the United States. We rely on their contractual safeguards for these transfers.
 
 ## 12. Changes
 

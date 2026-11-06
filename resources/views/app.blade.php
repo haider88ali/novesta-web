@@ -19,8 +19,8 @@
         {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            "name": "Nova",
-            "description": "Nova is a voice AI assistant for Mac and Windows: talk to search the web, write code, design UIs for Figma and control your computer — in 18 languages, including English, Spanish, Arabic, Urdu, Hindi and Chinese.",
+            "name": "Novesta",
+            "description": "Novesta is a voice AI assistant for Mac and Windows: talk to search the web, write code, design UIs for Figma, play music and YouTube, and control your computer — in 18 languages, including English, Spanish, Arabic, Urdu, Hindi and Chinese.",
             "applicationCategory": "ProductivityApplication",
             "operatingSystem": "macOS, Windows",
             "offers": {
@@ -40,11 +40,6 @@
     @routes
     @vite(['resources/js/app.js', "resources/js/pages/{$page['component']}.vue"])
     @inertiaHead
-
-    {{-- Paddle.js for the checkout overlay (only once Paddle keys are configured) --}}
-    @if (config('cashier.client_side_token'))
-        @paddleJS
-    @endif
 </head>
 
 <body class="font-sans antialiased">

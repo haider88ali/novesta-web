@@ -3,28 +3,28 @@ import { useSeoMeta } from '@unhead/vue'
 // Default SEO meta tags
 const defaultSeoMeta = {
   title: 'Home',
-  titleTemplate: '%s | Nova — Voice AI Assistant',
+  titleTemplate: '%s | Novesta — Voice AI Assistant',
   description:
-        'Nova is a voice AI assistant for Mac and Windows. Talk to search the web, write code, design UIs for Figma and control your computer — in English, Urdu and Hindi.',
+        'Novesta is a voice AI assistant for Mac and Windows. Talk to search the web, write code, design UIs for Figma, play music and YouTube, and control your computer — in 18 languages including English, Urdu and Hindi.',
   keywords:
-        'Nova, voice assistant, AI assistant, Urdu voice assistant, JARVIS, Mac assistant, Windows assistant, Figma AI',
+        'Novesta, voice assistant, AI assistant, music assistant, YouTube player, Urdu voice assistant, JARVIS, Mac assistant, Windows assistant, Figma AI',
   robots: 'index, follow',
   themeColor: '#000000',
 
   // Open Graph
-  ogTitle: '%s | Nova — Voice AI Assistant',
+  ogTitle: '%s | Novesta — Voice AI Assistant',
   ogDescription:
-        'Nova is a voice AI assistant for Mac and Windows. Talk to search the web, write code, design UIs for Figma and control your computer — in English, Urdu and Hindi.',
+        'Novesta is a voice AI assistant for Mac and Windows. Talk to search the web, write code, design UIs for Figma, play music and YouTube, and control your computer — in 18 languages including English, Urdu and Hindi.',
   ogUrl: typeof window !== 'undefined' ? window.location.origin : undefined,
   ogType: 'website',
-  // TODO: add a 1200×630 Nova share image at public/images/og.png and set ogImage/twitterImage to it
-  ogSiteName: 'Nova',
+  // TODO: add a 1200×630 Novesta share image at public/images/og.png and set ogImage/twitterImage to it
+  ogSiteName: 'Novesta',
   ogLocale: 'en_US',
 
   // Twitter
-  twitterTitle: '%s | Nova — Voice AI Assistant',
+  twitterTitle: '%s | Novesta — Voice AI Assistant',
   twitterDescription:
-        'Nova is a voice AI assistant for Mac and Windows. Talk to search the web, write code, design UIs for Figma and control your computer — in English, Urdu and Hindi.',
+        'Novesta is a voice AI assistant for Mac and Windows. Talk to search the web, write code, design UIs for Figma, play music and YouTube, and control your computer — in 18 languages including English, Urdu and Hindi.',
   twitterCard: 'summary',
 }
 

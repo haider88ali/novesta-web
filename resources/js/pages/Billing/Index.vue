@@ -1,7 +1,7 @@
 <script setup>
 import { Icon } from '@iconify/vue'
 import { Deferred, router } from '@inertiajs/vue3'
-import { computed, inject } from 'vue'
+import { computed, inject, ref } from 'vue'
 import Alert from '@/components/ui/alert/Alert.vue'
 import AlertDescription from '@/components/ui/alert/AlertDescription.vue'
 import AlertTitle from '@/components/ui/alert/AlertTitle.vue'
@@ -13,7 +13,7 @@ import AppLayout from '@/layouts/AppLayout.vue'
 const props = defineProps({
   currentPlan: { type: String, required: true },
   trialEndsAt: { type: String, default: null },
-  paddleReady: { type: Boolean, default: false },
+  stripeReady: { type: Boolean, default: false },
   subscription: { type: Object, default: null },
   plans: { type: Array, required: true },
   transactions: { type: Array, default: () => [] },
@@ -23,16 +23,16 @@ const route = inject('route')
 const formatDate = iso => iso ? new Date(iso).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' }) : ''
 const isActive = computed(() => props.subscription && !props.subscription.canceled)
 
+const justPaid = new URLSearchParams(window.location.search).get('checkout') === 'success'
+const redirecting = ref(null)
+
+// Stripe Checkout is a secure Stripe page; Cashier records the subscription from Stripe's webhook
 function checkout(plan) {
-  if (!window.Paddle) {
-    alert('Payments are not available right now. Please try again later.')
-    return
-  }
-  // Paddle opens its secure overlay; Cashier records the subscription from Paddle's webhook
-  window.Paddle.Checkout.open(plan.checkout)
+  redirecting.value = plan.key
+  router.post(route('billing.checkout'), { plan: plan.key }, { onFinish: () => { redirecting.value = null } })
 }
 function switchTo(plan) {
-  if (confirm(`Switch to ${plan.name} ($${plan.price}/month)? Paddle charges or credits the difference.`))
+  if (confirm(`Switch to ${plan.name} ($${plan.price}/month)? Stripe charges or credits the difference.`))
     router.post(route('billing.swap'), { plan: plan.key }, { preserveScroll: true })
 }
 function cancel() {
@@ -50,11 +50,19 @@ function cancel() {
     </template>
 
     <div class="space-y-6">
-      <Alert v-if="!paddleReady">
+      <Alert v-if="!stripeReady">
         <Icon icon="lucide:info" class="size-4" />
         <AlertTitle>Payments are not set up yet</AlertTitle>
         <AlertDescription>
-          Add PADDLE_API_KEY, PADDLE_CLIENT_SIDE_TOKEN and the plan price ids to .env to enable checkout.
+          Add STRIPE_KEY, STRIPE_SECRET, STRIPE_WEBHOOK_SECRET and the plan price ids to .env to enable checkout.
+        </AlertDescription>
+      </Alert>
+
+      <Alert v-if="justPaid && !subscription">
+        <Icon icon="lucide:loader" class="size-4 animate-spin" />
+        <AlertTitle>Payment received</AlertTitle>
+        <AlertDescription>
+          Your plan will switch on in a few seconds. Refresh this page if it doesn't.
         </AlertDescription>
       </Alert>
 
@@ -102,7 +110,8 @@ function cancel() {
             </ul>
           </CardContent>
           <CardFooter>
-            <Button v-if="plan.checkout" class="w-full" @click="checkout(plan)">
+            <Button v-if="plan.can_subscribe" class="w-full" :disabled="redirecting !== null" @click="checkout(plan)">
+              <Icon v-if="redirecting === plan.key" icon="lucide:loader" class="size-4 animate-spin" />
               {{ trialEndsAt ? 'Subscribe' : 'Upgrade' }} to {{ plan.name }}
             </Button>
             <Button v-else-if="plan.can_switch" variant="outline" class="w-full" @click="switchTo(plan)">
@@ -142,7 +151,7 @@ function cancel() {
                 <Badge variant="outline">
                   {{ t.status }}
                 </Badge>
-                <a :href="route('billing.invoice', { transaction: t.id })" class="text-primary underline-offset-4 hover:underline">PDF</a>
+                <a :href="route('billing.invoice', { transaction: t.id })" target="_blank" rel="noopener" class="text-primary underline-offset-4 hover:underline">View</a>
               </li>
             </ul>
           </CardContent>
@@ -150,7 +159,7 @@ function cancel() {
       </Deferred>
 
       <p class="text-sm text-muted-foreground">
-        🔒 Payments are handled securely by Paddle, which also takes care of sales tax and VAT.
+        🔒 Payments are handled securely by Stripe. We never see your full card number.
       </p>
     </div>
   </AppLayout>

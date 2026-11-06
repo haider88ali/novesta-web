@@ -42,42 +42,50 @@ const examples = [
   { say: 'Design a login screen, then make it in React', does: 'Designs it, sends it to Figma, writes the code', icon: 'lucide:palette' },
   { say: 'Programa una reunión con Sarah mañana a las 2', does: 'Adds it to your calendar, in Spanish or any of 18 languages', icon: 'lucide:calendar-plus' },
   { say: 'Good morning', does: 'Weather, your reminders and the top news in one briefing', icon: 'lucide:sunrise' },
-  { say: 'نووا، کل صبح 9 بجے علی کو کال کرنے کی یاد دہانی', does: 'Understands and replies in Urdu, sets the reminder', icon: 'lucide:languages', rtl: true },
+  { say: 'نووسٹا، کل صبح 9 بجے علی کو کال کرنے کی یاد دہانی', does: 'Understands and replies in Urdu, sets the reminder', icon: 'lucide:languages', rtl: true },
   { say: 'Aaj New York mein Asr kitne baje hai?', does: 'Today\'s prayer times for your city, in Roman Urdu', icon: 'lucide:moon-star' },
   { say: 'WhatsApp Ahmed that I\'ll be 10 minutes late', does: 'Finds the contact and gets the message ready to send', icon: 'lucide:message-circle' },
+  { say: 'Play Shallow by Lady Gaga', does: 'Plays it inside Novesta. Say "next", "pause" or "louder" anytime', icon: 'lucide:music' },
+  { say: 'Show me a video about how black holes form', does: 'Finds a good video on YouTube and plays it in a big player', icon: 'lucide:youtube' },
+  { say: 'Remember Alex\'s number is +1 415 555…', does: 'Saves it on your computer and uses it for WhatsApp messages', icon: 'lucide:contact' },
 ]
 
 const features = [
-  { icon: 'lucide:audio-lines', title: 'Talk from any app', text: 'Press Option+Space (Alt+Space on Windows) wherever you are and just talk. Nova waits until you\'ve finished — pauses and "umm"s don\'t cut you off.' },
-  { icon: 'lucide:search', title: 'Live web answers', text: 'Ask about news, prices, docs or anything current. Nova searches the web and answers with links to its sources.' },
-  { icon: 'lucide:code-xml', title: 'Code on command', text: 'Ask for scripts, components or fixes. Code is highlighted, one click to copy, and Nova can save it straight to a file.' },
-  { icon: 'lucide:square-terminal', title: 'Developer project mode', text: 'Say "work on my shop project". Nova reads and searches your code, then runs tests or edits files — always after you approve the exact command or change.' },
-  { icon: 'lucide:scan-eye', title: 'Sees your screen', text: 'Say "look at my screen" and Nova explains the error, chart or page in front of you — only when you ask.' },
-  { icon: 'lucide:notebook-pen', title: 'Meetings, handled', text: 'Say "schedule a meeting tomorrow at 2 pm" and it\'s in your calendar. During the meeting Nova writes live notes, then gives you a summary, decisions, action items and a follow-up email.' },
-  { icon: 'lucide:figma', title: 'Design → Figma → code', text: 'Describe a screen and Nova designs it and sends it to Figma as editable layers. Change it by voice, then turn it into Vue, React or HTML with Tailwind.' },
-  { icon: 'lucide:monitor-cog', title: 'Controls your computer', text: 'Open apps, files, folders and websites, change volume, play music, take screenshots, check your battery and prepare WhatsApp messages.' },
-  { icon: 'lucide:sunrise', title: 'Routines, reminders & memory', text: 'Say "good morning" for your daily briefing, schedule routines and set reminders by voice. Nova remembers your preferences and history — on your own computer.' },
+  { icon: 'lucide:audio-lines', title: 'Talk from any app', text: 'Press Option+Space (Alt+Space on Windows) wherever you are and just talk. Novesta waits until you\'ve finished — pauses and "umm"s don\'t cut you off.' },
+  { icon: 'lucide:search', title: 'Live web answers', text: 'Ask about news, prices, docs or anything current. Novesta searches the web and answers with links to its sources.' },
+  { icon: 'lucide:code-xml', title: 'Code on command', text: 'Ask for scripts, components or fixes. Code is highlighted, one click to copy, and Novesta can save it straight to a file.' },
+  { icon: 'lucide:square-terminal', title: 'Developer project mode', text: 'Say "work on my shop project". Novesta reads and searches your code, then runs tests or edits files — always after you approve the exact command or change.' },
+  { icon: 'lucide:scan-eye', title: 'Sees your screen', text: 'Say "look at my screen" and Novesta explains the error, chart or page in front of you — only when you ask.' },
+  { icon: 'lucide:notebook-pen', title: 'Meetings, handled', text: 'Say "schedule a meeting tomorrow at 2 pm" and it\'s in your calendar. During the meeting Novesta writes live notes, then gives you a summary, decisions, action items and a follow-up email.' },
+  { icon: 'lucide:figma', title: 'Design → Figma → code', text: 'Describe a screen and Novesta designs it and sends it to Figma as editable layers. Change it by voice, then turn it into Vue, React or HTML with Tailwind.' },
+  { icon: 'lucide:monitor-cog', title: 'Controls your computer', text: 'Open apps, folders and websites, change the volume, control Spotify or Apple Music, take screenshots and check your battery.' },
+  { icon: 'lucide:music', title: 'Music & YouTube built in', text: 'Say "play Shallow by Lady Gaga" or "show me a video about black holes" and it plays inside Novesta. Pause, skip or turn it up by voice; the music gets quieter while you talk.' },
+  { icon: 'lucide:folder-open', title: 'Your files, by voice', text: 'Find, open and preview PDFs, images, code and videos, download from a link, or save code straight to a file.' },
+  { icon: 'lucide:message-circle', title: 'WhatsApp, made easy', text: 'Say "WhatsApp Alex: on my way". Novesta finds the contact even when the name is spelled differently, or uses a number you asked it to remember. You press Send.' },
+  { icon: 'lucide:sunrise', title: 'Routines, reminders & memory', text: 'Say "good morning" for your daily briefing, schedule routines and set reminders by voice. Novesta remembers your preferences and history — on your own computer.' },
   { icon: 'lucide:languages', title: `Speaks ${languages.length} languages`, text: 'Talk and get answers in English, Español, Français, العربية, हिन्दी, 中文, 日本語 and more — including Urdu, Roman Urdu and namaz times for your city.' },
   { icon: 'lucide:clipboard-type', title: 'Quick actions on copied text', text: 'Copy any text and press Cmd/Ctrl+Shift+Space to summarise, translate, fix the grammar or write a reply.' },
-  { icon: 'lucide:smile', title: 'Your voice, your style', text: 'Pick from natural AI voices and personalities — calm JARVIS, friendly, professional, or Bhai mode in Roman Urdu.' },
+  { icon: 'lucide:smile', title: 'Your voice, your style', text: 'Calm, stoic JARVIS with the Fable voice by default. Or pick from 8 AI voices and 4 personalities: JARVIS, friendly, professional, or Bhai mode in Roman Urdu.' },
+  { icon: 'lucide:shield-check', title: 'Private by design', text: 'Your chats, memories and files stay on your computer, and Novesta asks before it changes anything. Your conversations are not used to train AI.' },
 ]
 
 const steps = [
-  { icon: 'lucide:download', title: 'Download Nova', text: 'Install the app on your Mac or Windows PC.' },
-  { icon: 'lucide:log-in', title: 'Sign in once', text: 'Nova opens this website to confirm it\'s you — no passwords typed into the app.' },
+  { icon: 'lucide:download', title: 'Download Novesta', text: 'Install the app on your Mac or Windows PC.' },
+  { icon: 'lucide:log-in', title: 'Sign in once', text: 'Novesta opens this website to confirm it\'s you — no passwords typed into the app.' },
   { icon: 'lucide:mic', title: 'Press Option+Space and talk', text: 'Ask, search, code, design or control your computer — just by talking. (Alt+Space on Windows.)' },
 ]
 
 const faqs = [
-  { q: 'What do I need to run Nova?', a: 'A Mac or Windows computer with a microphone and an internet connection. No extra hardware or setup is needed.' },
+  { q: 'What do I need to run Novesta?', a: 'A Mac or Windows computer with a microphone and an internet connection. No extra hardware or setup is needed.' },
   { q: 'Is there a free trial?', a: `Yes. Every new account gets ${props.trialDays} days of ${trialPlan.value?.name ?? 'Pro'} for free, with no card required. After that you stay on the Free plan unless you choose to upgrade.` },
-  { q: 'Can Nova do anything on my computer without asking?', a: 'Simple actions — opening apps, folders, files and websites, volume, music, screenshots and battery status — happen when you ask for them. Anything that changes your work needs your approval: in project mode Nova shows you the exact command or file change first and only runs it when you click Approve. It never reads secrets like .env files, passwords or keys, never looks at your screen unless you ask, and never sends a WhatsApp message itself — you press send.' },
-  { q: 'Does everything work on Windows?', a: 'Talking, web search, code, project mode, scheduling meetings, meeting notes, designs, routines, reminders, prayer times and quick actions work on both Mac and Windows. Controlling apps and system settings, opening files, screenshots, screen understanding, WhatsApp and reading or cancelling calendar events are Mac-only for now, with Windows support coming.' },
-  { q: 'How do I talk to Nova?', a: 'Press Option+Space on a Mac or Alt+Space on Windows from any app, or click the microphone in Nova. Speak naturally; Nova answers when you stop. You can also type.' },
-  { q: 'Where is my data stored?', a: 'Your chat history, memories and reminders are stored on your own computer. To answer you, each request is sent through Nova\'s servers to our AI provider (OpenAI), which may keep it for a limited time under its own data policy. Nova\'s servers record usage counts for your plan limits, not the content of your conversations.' },
-  { q: 'Which languages does Nova speak?', a: `${languages.length} languages for listening, written answers and the spoken voice: English, Urdu, Roman Urdu (Urdu in English letters), Hindi, Arabic, Bengali, Persian, Turkish, Spanish, French, German, Portuguese, Italian, Russian, Chinese, Japanese, Korean and Indonesian. Pick one in the app; you can also mix it with English in the same sentence. Code, file names and technical terms stay in English.` },
-  { q: 'How does the Figma integration work?', a: 'Ask Nova for a design and it appears in Nova instantly. With the free Nova Bridge plugin open in Figma\'s desktop app, the same design is created on your Figma page as editable frames, text and auto layout.' },
-  { q: 'How do I pay, and can I cancel?', a: 'Payments are handled securely by Paddle, which supports cards and local taxes worldwide. You can switch plans or cancel anytime from your account; you keep your plan until the end of the paid month.' },
+  { q: 'Can Novesta do anything on my computer without asking?', a: 'Simple actions — opening apps, folders, files and websites, volume, music, screenshots and battery status — happen when you ask for them. Anything that changes your work needs your approval: in project mode Novesta shows you the exact command or file change first and only runs it when you click Approve. It never reads secrets like .env files, passwords or keys, never looks at your screen unless you ask, and never sends a WhatsApp message itself — you press send.' },
+  { q: 'Does everything work on Windows?', a: 'Talking, web search, code, project mode, scheduling meetings, meeting notes, designs, music and YouTube, routines, reminders, prayer times and quick actions work on both Mac and Windows. Controlling apps and system settings, opening files, screenshots, screen understanding, WhatsApp and reading or cancelling calendar events are Mac-only for now, with Windows support coming.' },
+  { q: 'How do I talk to Novesta?', a: 'Press Option+Space on a Mac or Alt+Space on Windows from any app, or click the microphone in Novesta. Speak naturally; Novesta answers when you stop. You can also type.' },
+  { q: 'Where is my data stored?', a: 'Your chat history, memories and reminders are stored on your own computer. To answer you, each request is sent through Novesta\'s servers to our AI provider (OpenAI), which may keep it for a limited time under its own data policy. Novesta\'s servers record usage counts for your plan limits, not the content of your conversations.' },
+  { q: 'Which languages does Novesta speak?', a: `${languages.length} languages for listening, written answers and the spoken voice: English, Urdu, Roman Urdu (Urdu in English letters), Hindi, Arabic, Bengali, Persian, Turkish, Spanish, French, German, Portuguese, Italian, Russian, Chinese, Japanese, Korean and Indonesian. Pick one in the app; you can also mix it with English in the same sentence. Code, file names and technical terms stay in English.` },
+  { q: 'Can Novesta play music and videos?', a: 'Yes. Ask for any song, artist, mood or video and Novesta finds it on YouTube and plays it in its own player, with similar songs after it. Say "pause", "next", "louder" or "stop the music". To use Spotify or Apple Music instead, just name the app.' },
+  { q: 'How does the Figma integration work?', a: 'Ask Novesta for a design and it appears in Novesta instantly. With the free Novesta Bridge plugin open in Figma\'s desktop app, the same design is created on your Figma page as editable frames, text and auto layout.' },
+  { q: 'How do I pay, and can I cancel?', a: 'Payments are handled securely by Stripe, with cards, Apple Pay and Google Pay. You can switch plans or cancel anytime from your account; you keep your plan until the end of the paid month.' },
   { q: 'How many computers can I use?', a: 'It depends on your plan — see the device limit in each plan above. You can sign out an old computer from your account at any time.' },
 ]
 </script>
@@ -98,7 +106,7 @@ const faqs = [
           </h1>
           <p class="mx-auto mt-6 max-w-xl text-lg text-muted-foreground lg:mx-0">
             Press <strong class="text-foreground">Option+Space</strong> from any app and just talk. Search the web, work on your code,
-            take meeting notes, design screens for Figma and control your computer — in your language.
+            take meeting notes, design screens for Figma, play music and control your computer — in your language.
           </p>
           <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
             <Button size="lg" :as="Link" :href="startHref" class="text-base">
@@ -133,15 +141,15 @@ const faqs = [
       </div>
     </section>
 
-    <!-- ================= Say it, Nova does it ================= -->
+    <!-- ================= Say it, Novesta does it ================= -->
     <section class="border-b py-20">
       <div class="container mx-auto px-4">
         <div class="mx-auto mb-12 max-w-2xl text-center">
           <h2 class="text-3xl font-bold sm:text-4xl">
-            Say it. Nova does it.
+            Say it. Novesta does it.
           </h2>
           <p class="mt-4 text-muted-foreground">
-            Real things people ask Nova every day.
+            Real things people ask Novesta every day.
           </p>
         </div>
         <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -165,7 +173,7 @@ const faqs = [
             Everything you need, one voice away
           </h2>
           <p class="mt-4 text-muted-foreground">
-            Nova combines a fast AI model, live web search and real, approved control of your computer and your code.
+            Novesta combines a fast AI model, live web search and real, approved control of your computer and your code.
           </p>
         </div>
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -183,7 +191,7 @@ const faqs = [
         </div>
         <div class="mx-auto mt-12 max-w-4xl text-center">
           <p class="mb-4 text-sm font-medium text-muted-foreground">
-            Talk to Nova in your language
+            Talk to Novesta in your language
           </p>
           <ul class="flex flex-wrap justify-center gap-2">
             <li
@@ -269,7 +277,7 @@ const faqs = [
           </div>
         </div>
         <p class="mt-8 text-center text-sm text-muted-foreground">
-          Prices in USD. Taxes are calculated at checkout by Paddle.
+          Prices in USD. Any sales tax or VAT is shown at checkout.
         </p>
       </div>
     </section>
@@ -279,7 +287,7 @@ const faqs = [
       <div class="container mx-auto px-4">
         <div class="mx-auto max-w-3xl rounded-2xl border bg-card p-8 text-center sm:p-12">
           <h2 class="text-3xl font-bold sm:text-4xl">
-            Get Nova
+            Get Novesta
           </h2>
           <p class="mt-4 text-muted-foreground">
             Download the app, sign in with your account, and press Option+Space (Alt+Space on Windows) to talk.

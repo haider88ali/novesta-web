@@ -16,11 +16,11 @@ If you're not satisfied, you can ask for a **full refund within 14 days** of you
 
 ## How refunds are paid
 
-Payments are processed by Paddle, our Merchant of Record, so refunds go back to your original payment method through Paddle, usually within 5–10 business days. Your plan ends when a refund is issued.
+Payments are processed by Stripe, so refunds go back to your original payment method through Stripe, usually within 5–10 business days. Your plan ends when a refund is issued.
 
 ## Your legal rights
 
-This policy doesn't affect any rights you have under the consumer law where you live, or under Paddle's buyer terms.
+This policy doesn't affect any rights you have under the consumer law where you live.
 
 ## Contact
 

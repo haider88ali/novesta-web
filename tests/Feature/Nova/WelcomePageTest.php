@@ -16,6 +16,6 @@ test('the landing page shows the plans and prices from config', function (): voi
             ->where('plans.1.key', 'pro')
             ->where('plans.1.price', 15)
             ->where('trialDays', 7)
-            ->missing('plans.1.paddle_price_id')
+            ->missing('plans.1.stripe_price_id')
             ->missing('plans.1.limits'));
 });

@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 
 /**
- * Website side of desktop login: confirm a code shown by Nova, and remove signed-in devices.
+ * Website side of desktop login: confirm a code shown by Novesta, and remove signed-in devices.
  */
 final class DeviceController extends Controller
 {
@@ -37,7 +37,7 @@ final class DeviceController extends Controller
         $code = $this->pending(mb_strtoupper(trim($data['code'])));
 
         if (! $code) {
-            return back()->withErrors(['code' => 'That code is invalid or has expired. Start the sign-in again in Nova.']);
+            return back()->withErrors(['code' => 'That code is invalid or has expired. Start the sign-in again in Novesta.']);
         }
 
         $limits = Quota::limits($user);

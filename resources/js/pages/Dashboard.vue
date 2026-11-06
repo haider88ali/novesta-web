@@ -38,7 +38,7 @@ const trialDaysLeft = computed(() => props.trialEndsAt
 const formatDate = iso => iso ? new Date(iso).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' }) : 'Never'
 
 function removeDevice(device) {
-  if (confirm(`Sign out "${device.name}"? Nova on that computer will ask you to sign in again.`))
+  if (confirm(`Sign out "${device.name}"? Novesta on that computer will ask you to sign in again.`))
     router.delete(route('devices.destroy', { token: device.id }), { preserveScroll: true })
 }
 </script>
@@ -105,7 +105,7 @@ function removeDevice(device) {
       <!-- Download -->
       <Card>
         <CardHeader>
-          <CardDescription>Get Nova</CardDescription>
+          <CardDescription>Get Novesta</CardDescription>
           <CardTitle class="text-lg">
             Download the app
           </CardTitle>
@@ -133,7 +133,7 @@ function removeDevice(device) {
         </CardHeader>
         <CardContent>
           <p v-if="!devices.length" class="text-sm text-muted-foreground">
-            No devices yet. Install Nova and sign in — it will open this website to confirm.
+            No devices yet. Install Novesta and sign in — it will open this website to confirm.
           </p>
           <ul v-else class="divide-y">
             <li v-for="device in devices" :key="device.id" class="flex items-center justify-between gap-4 py-3">

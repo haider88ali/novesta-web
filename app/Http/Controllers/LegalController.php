@@ -47,7 +47,7 @@ final class LegalController extends Controller
         $plans = Config::array('nova.plans');
 
         $markdown = strtr((string) file_get_contents(resource_path("markdown/{$file}")), [
-            ':app' => (string) Config::get('app.name', 'Nova'),
+            ':app' => (string) Config::get('app.name', 'Novesta'),
             ':url' => (string) Config::get('app.url'),
             ':operator' => $legal['operator'],
             ':country' => $legal['country'],

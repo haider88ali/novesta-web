@@ -5,10 +5,10 @@ declare(strict_types=1);
 use Sentry\Laravel\Integration;
 use Illuminate\Foundation\Application;
 use App\Http\Middleware\HandleInertiaRequests;
-use Laravel\Sanctum\Http\Middleware\CheckAbilities;
-use Laravel\Sanctum\Http\Middleware\CheckForAnyAbility;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Laravel\Sanctum\Http\Middleware\CheckAbilities;
+use Laravel\Sanctum\Http\Middleware\CheckForAnyAbility;
 use Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets;
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -23,7 +23,7 @@ return Application::configure(basePath: dirname(__DIR__))
             AddLinkHeadersForPreloadedAssets::class,
         ]);
         $middleware->validateCsrfTokens(except: [
-            'paddle/*',   // Cashier Paddle webhook (signature-verified)
+            'stripe/*',   // Cashier Stripe webhook (signature-verified)
         ]);
         $middleware->alias([
             'abilities' => CheckAbilities::class,
