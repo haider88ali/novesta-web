@@ -1,9 +1,9 @@
 <script setup>
 import Separator from '@/components/ui/separator/Separator.vue'
 import AppLayout from '@/layouts/AppLayout.vue'
-import DeleteTeamForm from '@/pages/teams/Partials/DeleteTeamForm.vue'
-import TeamMemberManager from '@/pages/teams/Partials/TeamMemberManager.vue'
-import UpdateTeamNameForm from '@/pages/teams/Partials/UpdateTeamNameForm.vue'
+import DeleteTeamForm from '@/pages/Teams/Partials/DeleteTeamForm.vue'
+import TeamMemberManager from '@/pages/Teams/Partials/TeamMemberManager.vue'
+import UpdateTeamNameForm from '@/pages/Teams/Partials/UpdateTeamNameForm.vue'
 
 defineProps({
   team: Object,

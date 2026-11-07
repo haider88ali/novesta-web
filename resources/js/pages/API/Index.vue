@@ -1,6 +1,6 @@
 <script setup>
 import AppLayout from '@/layouts/AppLayout.vue'
-import ApiTokenManager from '@/pages/API/partials/ApiTokenManager.vue'
+import ApiTokenManager from '@/pages/API/Partials/ApiTokenManager.vue'
 
 defineProps({
   tokens: Array,
