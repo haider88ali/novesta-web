@@ -17,7 +17,10 @@ putenv("LARAVEL_STORAGE_PATH=$storage");
 // (a no-op after the first time; the marker keeps it to one check per instance)
 $migrated = '/tmp/.migrated';
 if (! file_exists($migrated)) {
-    exec(escapeshellarg(PHP_BINARY).' '.escapeshellarg(__DIR__.'/../artisan').' migrate --force --no-interaction 2>&1', $output, $status);
+    // Schema changes go over Neon's direct connection: its pooler breaks migration transactions
+    $direct = getenv('DATABASE_URL_UNPOOLED');
+    $env = $direct ? 'DB_URL='.escapeshellarg($direct).' ' : '';
+    exec($env.escapeshellarg(PHP_BINARY).' '.escapeshellarg(__DIR__.'/../artisan').' migrate --force --no-interaction 2>&1', $output, $status);
     if ($status === 0) {
         touch($migrated);
     } else {
