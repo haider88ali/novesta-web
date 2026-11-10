@@ -13,6 +13,7 @@
     { "src": "/(.*)", "dest": "/api/index.php" }
   ],
   "env": {
+    "APP_NAME": "Novesta",
     "APP_ENV": "production",
     "APP_DEBUG": "false",
     "APP_CONFIG_CACHE": "/tmp/config.php",
@@ -26,6 +27,6 @@
     "CACHE_STORE": "array",
     "QUEUE_CONNECTION": "sync",
     "LOG_CHANNEL": "stderr",
-    "MAIL_MAILER": "log"
+    "MAIL_FROM_NAME": "Novesta"
   }
 }
