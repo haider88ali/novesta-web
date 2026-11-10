@@ -192,7 +192,7 @@ useSeoMetaTags({
                   <div class="flex items-center space-x-2">
                     <Checkbox
                       id="remember"
-                      v-model:checked="
+                      v-model="
                         passwordForm.remember
                       "
                       name="remember"

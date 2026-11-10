@@ -97,9 +97,8 @@ function toggleLink(provider) {
           </div>
           <Switch
             :disabled="loadingProvider"
-            :checked="activeProviders.includes(provider.slug)"
-            @update:checked="toggleLink(provider.slug)"
-            @update:unchecked="toggleLink(provider.slug)"
+            :model-value="activeProviders.includes(provider.slug)"
+            @update:model-value="toggleLink(provider.slug)"
           />
         </div>
       </div>

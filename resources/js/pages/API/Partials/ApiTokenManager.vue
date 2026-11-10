@@ -136,13 +136,13 @@ function hasPermission(permissions, permission) {
             >
               <Checkbox
                 :id="`create-${permission}`"
-                :checked="
+                :model-value="
                   hasPermission(
                     createApiTokenForm.permissions,
                     permission,
                   )
                 "
-                @update:checked="
+                @update:model-value="
                   (checked) => {
                     if (checked) {
                       createApiTokenForm.permissions.push(
@@ -288,13 +288,13 @@ function hasPermission(permissions, permission) {
           >
             <Checkbox
               :id="`update-${permission}`"
-              :checked="
+              :model-value="
                 hasPermission(
                   updateApiTokenForm.permissions,
                   permission,
                 )
               "
-              @update:checked="
+              @update:model-value="
                 (checked) => {
                   if (checked) {
                     updateApiTokenForm.permissions.push(

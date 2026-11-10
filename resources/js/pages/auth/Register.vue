@@ -112,7 +112,7 @@ function submit() {
               <div class="flex items-center space-x-2">
                 <Checkbox
                   id="terms"
-                  v-model:checked="form.terms"
+                  v-model="form.terms"
                   name="terms"
                   required
                 />
