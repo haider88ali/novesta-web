@@ -28,4 +28,9 @@ if (! file_exists($migrated)) {
     }
 }
 
+// Laravel would take /api as the site's base folder (this script is /api/index.php) and route
+// /api/v1/me as /v1/me; present it as the usual public/index.php instead
+$_SERVER['SCRIPT_NAME'] = $_SERVER['PHP_SELF'] = '/index.php';
+$_SERVER['SCRIPT_FILENAME'] = realpath(__DIR__.'/../public/index.php');
+
 require __DIR__.'/../public/index.php';
