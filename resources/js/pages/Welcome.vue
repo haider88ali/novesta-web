@@ -96,8 +96,8 @@ const faqs = [
     <section class="relative overflow-hidden border-b">
       <div class="hero-glow pointer-events-none absolute inset-0" aria-hidden="true" />
       <div class="container relative mx-auto grid items-center gap-12 px-4 py-20 sm:py-28 lg:grid-cols-2">
-        <div class="text-center lg:text-left">
-          <Badge variant="outline" class="mb-6 rounded-full border-cyan-500/40 bg-cyan-500/10 px-4 py-1 text-xs sm:text-sm">
+        <div class="min-w-0 text-center lg:text-left">
+          <Badge variant="outline" class="mb-6 max-w-full flex-wrap whitespace-normal rounded-full border-cyan-500/40 bg-cyan-500/10 px-4 py-1 text-xs sm:text-sm">
             🎙️ Speaks {{ languages.length }} languages · English · Español · <bdi>العربية</bdi> · <bdi class="font-urdu">اردو</bdi> · 中文
           </Badge>
           <h1 class="text-4xl font-bold tracking-tight sm:text-6xl">
